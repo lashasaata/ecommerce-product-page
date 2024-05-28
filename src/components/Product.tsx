@@ -1,8 +1,6 @@
 import Slider from "react-slick";
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
 import { useParams } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState, useRef } from "react";
 import { Mycontext } from "../App";
 
 function Product() {
@@ -18,8 +16,17 @@ function Product() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    prevArrow: <img src="/images/icon-previous.svg" alt="prev" />,
-    nextArrow: <img src="/images/icon-next.svg" alt="next" />,
+  };
+  const [amount, setAmount] = useState(0);
+  const addproduct = () => {
+    if (amount !== 10) {
+      setAmount(amount + 1);
+    }
+  };
+  const cutproduct = () => {
+    if (amount !== 0) {
+      setAmount(amount - 1);
+    }
   };
 
   return (
@@ -29,20 +36,22 @@ function Product() {
         .map((e: Tproduct, index: number) => {
           return (
             <div key={index} className="flex flex-col items-center gap-6">
-              {/* <Slider {...settings}>
-                <div>
-                  <img src={e.images.first} alt="first" />
-                </div>
-                <div>
-                  <img src={e.images.second} alt="second" />
-                </div>
-                <div>
-                  <img src={e.images.third} alt="third" />
-                </div>
-                <div>
-                  <img src={e.images.fourth} alt="fourth" />
-                </div>
-              </Slider> */}
+              <div>
+                <Slider {...settings}>
+                  <div>
+                    <img src={e.images.first} alt="first" />
+                  </div>
+                  <div>
+                    <img src={e.images.second} alt="second" />
+                  </div>
+                  <div>
+                    <img src={e.images.third} alt="third" />
+                  </div>
+                  <div>
+                    <img src={e.images.fourth} alt="fourth" />
+                  </div>
+                </Slider>
+              </div>
               <section className="w-[327px] flex flex-col gap-4 mb-20">
                 <span className="text-xs text-[#ff7e1b] font-[700] tracking-[1.85px]">
                   {e.company}
@@ -68,11 +77,19 @@ function Product() {
                 </div>
                 <section className="flex flex-col gap-4 mt-2">
                   <div className="flex items-center justify-between bg-[#f6f8fd] rounded-[10px] pt-[22px] px-6 pb-[18px]">
-                    <img src="/images/icon-minus.svg" alt="minus" />
+                    <img
+                      onClick={cutproduct}
+                      src="/images/icon-minus.svg"
+                      alt="minus"
+                    />
                     <span className="text-base text-[#1d2026] font-[700] leading-[1] mt-[-3px]">
-                      0
+                      {amount}
                     </span>
-                    <img src="/images/icon-plus.svg" alt="plus" />
+                    <img
+                      onClick={addproduct}
+                      src="/images/icon-plus.svg"
+                      alt="plus"
+                    />
                   </div>
                   <button className="flex justify-center items-center gap-4 bg-[#ff7e1b] rounded-[10px] shadow-addToCart pt-[19px] pb-[18px]">
                     {/* <img
