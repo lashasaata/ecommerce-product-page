@@ -6,22 +6,24 @@ import Navigate from "./components/Navigate";
 import Collections from "./components/Collections";
 import Product from "./components/Product";
 
-const Mycontext = createContext(null);
+export const Mycontext = createContext(null);
 
 function App() {
+  const useData: Tdata = data;
   const navigate = useNavigate();
+  console.log(data);
   return (
     <div>
       <Mycontext.Provider
         value={{
-          data,
+          useData,
           navigate,
         }}
       >
         <Navigate />
         <Routes>
           <Route path="/" element={<Collections />} />
-          <Route path="/:id/product" element={<Product />} />
+          <Route path="/:id" element={<Product />} />
           <Route />
           <Route />
           <Route />

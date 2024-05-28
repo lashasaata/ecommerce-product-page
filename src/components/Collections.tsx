@@ -1,7 +1,19 @@
+import { useContext } from "react";
+import { Mycontext } from "../App";
 function Collections() {
+  const context = useContext(Mycontext);
+  console.log(context);
   return (
     <div>
-      <h1>Collections</h1>
+      {context.useData.products.map((e, index: number) => {
+        return (
+          <div>
+            <h1 key={index} onClick={() => context.navigate(`/${e.id}`)}>
+              {e.name}
+            </h1>
+          </div>
+        );
+      })}
     </div>
   );
 }
