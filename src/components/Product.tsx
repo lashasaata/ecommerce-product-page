@@ -10,6 +10,8 @@ function Product() {
   const params = useParams();
   const id = params.id;
 
+  const findPrice = () => {};
+
   var settings = {
     dots: true,
     infinite: true,
@@ -27,7 +29,7 @@ function Product() {
         .map((e: Tproduct, index: number) => {
           return (
             <div key={index}>
-              <Slider {...settings}>
+              {/* <Slider {...settings}>
                 <div>
                   <img src={e.images.first} alt="first" />
                 </div>
@@ -40,7 +42,30 @@ function Product() {
                 <div>
                   <img src={e.images.fourth} alt="fourth" />
                 </div>
-              </Slider>
+              </Slider> */}
+              <section>
+                <span>{e.company}</span>
+                <h1>{e.name}</h1>
+                <p>{e.description}</p>
+                <div>
+                  <div>
+                    <span>${(e.price * e.discount).toFixed(2)}</span>
+                    <div>{e.discount * 100}%</div>
+                  </div>
+                  <span>${e.price.toFixed(2)}</span>
+                </div>
+                <section>
+                  <div>
+                    <img src="/images/icon-minus.svg" alt="minus" />
+                    <span></span>
+                    <img src="/images/icon-plus.svg" alt="plus" />
+                  </div>
+                  <button>
+                    <img src="/images/icon-cart.svg" alt="cart" />
+                    <span>Add to cart</span>
+                  </button>
+                </section>
+              </section>
             </div>
           );
         })}
