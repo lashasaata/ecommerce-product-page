@@ -1,4 +1,11 @@
 {
+  "user": [
+    {
+      "id": 1,
+      "userName": "",
+      "cart": []
+    }
+  ],
   "products": [
     {
       "id": 1,

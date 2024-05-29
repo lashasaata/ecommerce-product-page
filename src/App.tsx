@@ -1,7 +1,7 @@
 import "./App.css";
 import data from "../data.json";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import Navigate from "./components/Navigate";
 import Collections from "./components/Collections";
 import Product from "./components/Product";
@@ -9,14 +9,15 @@ import Product from "./components/Product";
 export const Mycontext = createContext(null);
 
 function App() {
-  const useData: Tdata = data;
+  const [useData, setUsedata] = useState(data);
   const navigate = useNavigate();
-  console.log(data);
+
   return (
     <div>
       <Mycontext.Provider
         value={{
           useData,
+          setUsedata,
           navigate,
         }}
       >

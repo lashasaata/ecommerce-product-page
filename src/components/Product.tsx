@@ -29,6 +29,31 @@ function Product() {
     }
   };
 
+  const addHandler = (e) => {
+    if (amount > 0) {
+      context.setUsedata((prevData) => {
+        const updatedUser = {
+          ...prevData.user[0],
+          cart: [
+            ...prevData.user[0].cart,
+            {
+              id: Math.floor(Math.random() * 1000),
+              name: e.name,
+              image: e.images.first,
+              price: e.price * e.discount,
+              amount: amount,
+            },
+          ],
+        };
+
+        return {
+          ...prevData,
+          user: [updatedUser],
+        };
+      });
+    }
+    setAmount(0);
+  };
   return (
     <main>
       {context.useData.products
@@ -36,7 +61,7 @@ function Product() {
         .map((e: Tproduct, index: number) => {
           return (
             <div key={index} className="flex flex-col items-center gap-6">
-              <div>
+              {/* <div>
                 <Slider {...settings}>
                   <div>
                     <img src={e.images.first} alt="first" />
@@ -51,7 +76,7 @@ function Product() {
                     <img src={e.images.fourth} alt="fourth" />
                   </div>
                 </Slider>
-              </div>
+              </div> */}
               <section className="w-[327px] flex flex-col gap-4 mb-20">
                 <span className="text-xs text-[#ff7e1b] font-[700] tracking-[1.85px]">
                   {e.company}
@@ -91,7 +116,10 @@ function Product() {
                       alt="plus"
                     />
                   </div>
-                  <button className="flex justify-center items-center gap-4 bg-[#ff7e1b] rounded-[10px] shadow-addToCart pt-[19px] pb-[18px]">
+                  <button
+                    onClick={() => addHandler(e)}
+                    className="flex justify-center items-center gap-4 bg-[#ff7e1b] rounded-[10px] shadow-addToCart pt-[19px] pb-[18px]"
+                  >
                     {/* <img
                       className="w-4 h-4"
                       src="/images/icon-cart.svg"
