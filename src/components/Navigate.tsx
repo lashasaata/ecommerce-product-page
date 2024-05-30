@@ -41,45 +41,57 @@ function Navigate() {
                 Cart
               </span>
             </div>
-            <div className="w-full max-h-[140px] overflow-auto flex flex-col gap-6">
-              {context.useData.user[0].cart.map((e, index: number) => {
-                return (
-                  <section
-                    key={index}
-                    className="w-full flex items-center justify-between px-6"
-                  >
-                    <div className="flex items-center gap-4">
-                      <img
-                        src={e.image}
-                        alt="product"
-                        className="w-[50px] h-[50px] rounded-[4px]"
-                      />
-                      <div>
-                        <h2 className="text-base text-[#69707d] font-[500] leading-[1.63] ">
-                          {e.name}
-                        </h2>
-                        <div>
-                          <span className="text-base text-[#69707d] font-[500] leading-[1.63] ">
-                            ${e.price} x {e.amount}
-                          </span>{" "}
-                          <span className="text-base text-[#1d2026] font-[500] leading-[1.63] ">
-                            ${(Number(e.price) * Number(e.amount)).toFixed(2)}
-                          </span>
+            {context.useData.user[0].cart.length > 0 ? (
+              <div className="w-full flex flex-col items-center gap-6">
+                {" "}
+                <div className="w-full max-h-[140px] overflow-auto flex flex-col gap-6">
+                  {context.useData.user[0].cart.map((e, index: number) => {
+                    return (
+                      <section
+                        key={index}
+                        className="w-full flex items-center justify-between px-6"
+                      >
+                        <div className="flex items-center gap-4">
+                          <img
+                            src={e.image}
+                            alt="product"
+                            className="w-[50px] h-[50px] rounded-[4px]"
+                          />
+                          <div>
+                            <h2 className="text-base text-[#69707d] font-[500] leading-[1.63] ">
+                              {e.name}
+                            </h2>
+                            <div>
+                              <span className="text-base text-[#69707d] font-[500] leading-[1.63] ">
+                                ${e.price} x {e.amount}
+                              </span>{" "}
+                              <span className="text-base text-[#1d2026] font-[500] leading-[1.63] ">
+                                $
+                                {(Number(e.price) * Number(e.amount)).toFixed(
+                                  2
+                                )}
+                              </span>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                    <img
-                      src="/images/icon-delete.svg"
-                      alt="delete"
-                      className="ml-1"
-                    />
-                  </section>
-                );
-              })}
-            </div>
-            <button className="w-[312px] h-[56px] rounded-[10px] bg-[#ff7e1b] flex justify-center pt-[22px] mb-[32px] text-base text-[#fff] font-[700] leading-[1] ">
-              Checkout
-            </button>
+                        <img
+                          src="/images/icon-delete.svg"
+                          alt="delete"
+                          className="ml-1"
+                        />
+                      </section>
+                    );
+                  })}
+                </div>
+                <button className="w-[312px] h-[56px] rounded-[10px] bg-[#ff7e1b] flex justify-center pt-[22px] mb-[32px] text-base text-[#fff] font-[700] leading-[1] ">
+                  Checkout
+                </button>
+              </div>
+            ) : (
+              <span className="text-base text-[#69707d] font-[700] mt-[53px] mb-[85px] leading-[1.63]">
+                Your cart is empty.
+              </span>
+            )}
           </div>
         ) : (
           ""
