@@ -1,9 +1,10 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { Mycontext } from "../App";
 
 function Navigate() {
   const context = useContext(Mycontext);
   const [cartList, setCartList] = useState(false);
+  const sectionRef = useRef(null);
 
   const handleList = () => {
     setCartList(!cartList);
@@ -26,6 +27,23 @@ function Navigate() {
     });
   };
 
+  // closes the cart section after click on other place
+
+  // useEffect(() => {
+  //   if (cartList) {
+  //     const handleOutsideClick = (event) => {
+  //       if (sectionRef.current && !sectionRef.current.contains(event.target)) {
+  //         setCartList(false);
+  //       }
+  //     };
+
+  //     document.addEventListener("click", handleOutsideClick);
+
+  //     return () => {
+  //       document.removeEventListener("click", handleOutsideClick);
+  //     };
+  //   }
+  // });
   return (
     <header className="flex justify-between items-center px-6 pt-[19px] pb-6">
       <div className="flex gap-4 items-center">
@@ -49,7 +67,10 @@ function Navigate() {
           className="w-6 h-6 rounded-full"
         />
         {cartList ? (
-          <div className="w-[360px] bg-[#fff] rounded-[10px] flex flex-col items-center gap-6 shadow-cart absolute bottom-[-33px] right-[-17px] transform translate-y-full">
+          <div
+            ref={sectionRef}
+            className="w-[360px] bg-[#fff] rounded-[10px] flex flex-col items-center gap-6 shadow-cart absolute bottom-[-33px] right-[-17px] transform translate-y-full"
+          >
             <div className="w-full px-6 pt-6 pb-[27px] border-b order-solid border-[#e4e9f2]">
               <span className="text-base text-[#1d2026] fornt-[700] leading-[1]">
                 Cart
