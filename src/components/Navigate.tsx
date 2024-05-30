@@ -12,6 +12,20 @@ function Navigate() {
   let products = 0;
   context.useData.user[0].cart.map((e) => (products += e.amount));
 
+  //delete product from the cart
+  const handleDelete = (id: number) => {
+    const updatedUser: Tdata = {
+      ...context.useData.user[0],
+      cart: context.useData.user[0].cart.filter((item) => item.id !== id),
+    };
+    context.setUsedata(() => {
+      return {
+        ...context.useData,
+        user: [updatedUser],
+      };
+    });
+  };
+
   return (
     <header className="flex justify-between items-center px-6 pt-[19px] pb-6">
       <div className="flex gap-4 items-center">
@@ -75,6 +89,7 @@ function Navigate() {
                           </div>
                         </div>
                         <img
+                          onClick={() => handleDelete(e.id)}
                           src="/images/icon-delete.svg"
                           alt="delete"
                           className="ml-1"
