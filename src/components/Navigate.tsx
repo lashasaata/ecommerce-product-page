@@ -35,28 +35,51 @@ function Navigate() {
           className="w-6 h-6 rounded-full"
         />
         {cartList ? (
-          <div className="w-[360px] bg-[#fff] rounded-[10px] flex flex-col gap-6 shadow-cart absolute bottom-[-33px] right-[-17px] transform translate-y-full">
-            <div>Cart</div>
-            {context.useData.user[0].cart.map((e) => {
-              return (
-                <section>
-                  <img src={e.image} alt="product" />
-                  <div>
-                    <h2>{e.name}</h2>
-                    <div>
-                      <span>
-                        ${(e.price * e.discount).toFixed(2)}x{e.amount}
-                      </span>
-                      <span>
-                        ${(e.price * e.discount * e.amount).toFixed(2)}
-                      </span>
+          <div className="w-[360px] bg-[#fff] rounded-[10px] flex flex-col items-center gap-6 shadow-cart absolute bottom-[-33px] right-[-17px] transform translate-y-full">
+            <div className="w-full px-6 pt-6 pb-[27px] border-b order-solid border-[#e4e9f2]">
+              <span className="text-base text-[#1d2026] fornt-[700] leading-[1]">
+                Cart
+              </span>
+            </div>
+            <div className="w-full max-h-[140px] overflow-auto flex flex-col gap-6">
+              {context.useData.user[0].cart.map((e, index: number) => {
+                return (
+                  <section
+                    key={index}
+                    className="w-full flex items-center justify-between px-6"
+                  >
+                    <div className="flex items-center gap-4">
+                      <img
+                        src={e.image}
+                        alt="product"
+                        className="w-[50px] h-[50px] rounded-[4px]"
+                      />
+                      <div>
+                        <h2 className="text-base text-[#69707d] font-[500] leading-[1.63] ">
+                          {e.name}
+                        </h2>
+                        <div>
+                          <span className="text-base text-[#69707d] font-[500] leading-[1.63] ">
+                            ${e.price} x {e.amount}
+                          </span>{" "}
+                          <span className="text-base text-[#1d2026] font-[500] leading-[1.63] ">
+                            ${(Number(e.price) * Number(e.amount)).toFixed(2)}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                  <img src="/images/icon-delete.svg" alt="delete" />
-                </section>
-              );
-            })}
-            <button>Checkout</button>
+                    <img
+                      src="/images/icon-delete.svg"
+                      alt="delete"
+                      className="ml-1"
+                    />
+                  </section>
+                );
+              })}
+            </div>
+            <button className="w-[312px] h-[56px] rounded-[10px] bg-[#ff7e1b] flex justify-center pt-[22px] mb-[32px] text-base text-[#fff] font-[700] leading-[1] ">
+              Checkout
+            </button>
           </div>
         ) : (
           ""
