@@ -27,6 +27,21 @@ function Navigate() {
     });
   };
 
+  //clears product cart
+
+  const purchase = () => {
+    const updatedUser: Tdata = {
+      ...context.useData.user[0],
+      cart: [],
+    };
+    context.setUsedata(() => {
+      return {
+        ...context.useData,
+        user: [updatedUser],
+      };
+    });
+  };
+
   // closes the cart section after click on other place
 
   // useEffect(() => {
@@ -119,7 +134,10 @@ function Navigate() {
                     );
                   })}
                 </div>
-                <button className="w-[312px] h-[56px] rounded-[10px] bg-[#ff7e1b] flex justify-center pt-[22px] mb-[32px] text-base text-[#fff] font-[700] leading-[1] ">
+                <button
+                  onClick={purchase}
+                  className="w-[312px] h-[56px] rounded-[10px] bg-[#ff7e1b] flex justify-center pt-[22px] mb-[32px] text-base text-[#fff] font-[700] leading-[1] "
+                >
                   Checkout
                 </button>
               </div>
