@@ -1,9 +1,11 @@
 import { useContext, useState, useEffect, useRef } from "react";
 import { Mycontext } from "../App";
+import Overlay from "./overlay/Overlay";
 
 function Navigate() {
   const context = useContext(Mycontext);
   const [cartList, setCartList] = useState(false);
+  const [isOverlay, setOverlay] = useState(false);
   const sectionRef = useRef(null);
 
   const handleList = () => {
@@ -42,6 +44,12 @@ function Navigate() {
     });
   };
 
+  // opens and closes overlay component
+
+  const openOverlay = () => {
+    setOverlay(true);
+  };
+
   // closes the cart section after click on other place
 
   // useEffect(() => {
@@ -62,7 +70,7 @@ function Navigate() {
   return (
     <header className="flex justify-between items-center px-6 pt-[19px] pb-6">
       <div className="flex gap-4 items-center">
-        <img src="/images/icon-menu.svg" alt="menu" />
+        <img onClick={openOverlay} src="/images/icon-menu.svg" alt="menu" />
         <img src="/images/logo.svg" alt="logo" />
       </div>
       <div className="flex items-center gap-[22px] relative">
@@ -151,6 +159,7 @@ function Navigate() {
           ""
         )}
       </div>
+      {isOverlay ? <Overlay setOverlay={setOverlay} /> : ""}
     </header>
   );
 }
