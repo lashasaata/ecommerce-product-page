@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { Mycontext } from "../../App";
 function Overlay({
   setOverlay,
 }: {
@@ -6,6 +8,7 @@ function Overlay({
   const closeOverlay = () => {
     setOverlay(false);
   };
+  const context = useContext(Mycontext);
   //
   const routSt = {
     fontSize: "18px",
@@ -25,11 +28,51 @@ function Overlay({
               alt="close"
             />
             <nav className="flex flex-col gap-5">
-              <h2 style={routSt}>Collections</h2>
-              <h2 style={routSt}>Men</h2>
-              <h2 style={routSt}>Women</h2>
-              <h2 style={routSt}>About</h2>
-              <h2 style={routSt}>Contact</h2>
+              <h2
+                style={routSt}
+                onClick={() => {
+                  context.navigate("/");
+                  setOverlay(false);
+                }}
+              >
+                Collections
+              </h2>
+              <h2
+                style={routSt}
+                onClick={() => {
+                  context.navigate("/men");
+                  setOverlay(false);
+                }}
+              >
+                Men
+              </h2>
+              <h2
+                style={routSt}
+                onClick={() => {
+                  context.navigate("/women");
+                  setOverlay(false);
+                }}
+              >
+                Women
+              </h2>
+              <h2
+                style={routSt}
+                onClick={() => {
+                  context.navigate("/about");
+                  setOverlay(false);
+                }}
+              >
+                About
+              </h2>
+              <h2
+                style={routSt}
+                onClick={() => {
+                  context.navigate("/contact");
+                  setOverlay(false);
+                }}
+              >
+                Contact
+              </h2>
             </nav>
           </div>
         </div>
