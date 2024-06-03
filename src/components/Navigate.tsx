@@ -92,7 +92,7 @@ function Navigate() {
         {cartList ? (
           <div
             ref={sectionRef}
-            className="w-[360px] bg-[#fff] rounded-[10px] flex flex-col items-center gap-6 shadow-cart absolute bottom-[-33px] right-[-17px] transform translate-y-full"
+            className="w-[360px] bg-[#fff] rounded-[10px] flex flex-col items-center gap-6 shadow-cart absolute bottom-[-33px] right-[-17px] transform translate-y-full z-10"
           >
             <div className="w-full px-6 pt-6 pb-[27px] border-b order-solid border-[#e4e9f2]">
               <span className="text-base text-[#1d2026] fornt-[700] leading-[1]">

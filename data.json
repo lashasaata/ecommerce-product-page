@@ -16,9 +16,9 @@
       "discount": 0.5,
       "images": {
         "first": "/images/image-product-1.jpg",
-        "second": "/images/image-product-1.jpg",
-        "third": "/images/image-product-1.jpg",
-        "fourth": "/images/image-product-1.jpg"
+        "second": "/images/image-product-2.jpg",
+        "third": "/images/image-product-3.jpg",
+        "fourth": "/images/image-product-4.jpg"
       }
     }
   ]
