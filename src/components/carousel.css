@@ -1,0 +1,7 @@
+.slick-list {
+  width: 375px;
+  height: 300px;
+}
+.slick-arrow && slick-prev {
+  position: absolute;
+}

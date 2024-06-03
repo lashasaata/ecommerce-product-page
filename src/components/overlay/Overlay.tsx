@@ -1,5 +1,3 @@
-import "./overlay.css";
-
 function Overlay({
   setOverlay,
 }: {

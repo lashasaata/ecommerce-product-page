@@ -1,4 +1,8 @@
+import React from "react";
 import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "./carousel.css";
 import { useParams } from "react-router-dom";
 import { useContext, useState, useRef } from "react";
 import { Mycontext } from "../App";
@@ -11,12 +15,26 @@ function Product() {
   const findPrice = () => {};
 
   var settings = {
-    dots: true,
     infinite: true,
-    speed: 500,
+    speed: 300,
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+  const slider = React.useRef(null);
+
+  const next = () => {
+    if (slider.current) {
+      slider.current.slickNext();
+    }
+  };
+
+  const previous = () => {
+    if (slider.current) {
+      slider.current.slickPrev();
+    }
+  };
+
+  //
   const [amount, setAmount] = useState(0);
   const addproduct = () => {
     if (amount !== 10) {
@@ -60,10 +78,13 @@ function Product() {
         .filter((element: Tproduct) => element.id == Number(id))
         .map((e: Tproduct, index: number) => {
           return (
-            <div key={index} className="flex flex-col items-center gap-6">
-              {/* <div>
-                <Slider {...settings}>
-                  <div>
+            <div
+              key={index}
+              className="flex flex-col items-center gap-6 overflow-hidden"
+            >
+              <div className="relative">
+                <Slider ref={slider} {...settings}>
+                  <div className="w-[300px] h-[300px] bg-[#12de3]">
                     <img src={e.images.first} alt="first" />
                   </div>
                   <div>
@@ -76,7 +97,27 @@ function Product() {
                     <img src={e.images.fourth} alt="fourth" />
                   </div>
                 </Slider>
-              </div> */}
+                <button
+                  onClick={previous}
+                  className="w-10 h-10 bg-[#fff] rounded-full flex items-center absolute top-1/2 left-[16px] transform -translate-y-1/2"
+                >
+                  <img
+                    src="/images/icon-previous.svg"
+                    alt="previous"
+                    className="h-3 ml-[15px]"
+                  />
+                </button>
+                <button
+                  onClick={next}
+                  className="w-10 h-10 bg-[#fff] rounded-full flex items-center justify-end absolute top-1/2 right-[16px] transform -translate-y-1/2"
+                >
+                  <img
+                    src="/images/icon-next.svg"
+                    alt="next"
+                    className="h-3 mr-[15px]"
+                  />
+                </button>
+              </div>
               <section className="w-[327px] flex flex-col gap-4 mb-20">
                 <span className="text-xs text-[#ff7e1b] font-[700] tracking-[1.85px]">
                   {e.company}
@@ -120,11 +161,6 @@ function Product() {
                     onClick={() => addHandler(e)}
                     className="flex justify-center items-center gap-4 bg-[#ff7e1b] rounded-[10px] shadow-addToCart pt-[19px] pb-[18px]"
                   >
-                    {/* <img
-                      className="w-4 h-4"
-                      src="/images/icon-cart.svg"
-                      alt="cart"
-                    /> */}
                     <svg
                       className="hover:cursor-pointer"
                       width="21.5"
