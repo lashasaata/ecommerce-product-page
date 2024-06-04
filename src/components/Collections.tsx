@@ -7,10 +7,8 @@ function Collections() {
     <div>
       {context.useData.products.map((e, index: number) => {
         return (
-          <div>
-            <h1 key={index} onClick={() => context.navigate(`/${e.id}`)}>
-              {e.name}
-            </h1>
+          <div key={index}>
+            <h1 onClick={() => context.navigate(`/${e.id}`)}>{e.name}</h1>
           </div>
         );
       })}

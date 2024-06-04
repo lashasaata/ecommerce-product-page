@@ -10,6 +10,7 @@ export const Mycontext = createContext(null);
 
 function App() {
   const [useData, setUsedata] = useState(data);
+  const [cartList, setCartList] = useState(false);
   const navigate = useNavigate();
 
   return (
@@ -19,6 +20,8 @@ function App() {
           useData,
           setUsedata,
           navigate,
+          cartList,
+          setCartList,
         }}
       >
         <Navigate />

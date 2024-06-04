@@ -73,7 +73,7 @@ function Product() {
     setAmount(0);
   };
   return (
-    <main>
+    <main onClick={() => context.setCartList(false)}>
       {context.useData.products
         .filter((element: Tproduct) => element.id == Number(id))
         .map((e: Tproduct, index: number) => {

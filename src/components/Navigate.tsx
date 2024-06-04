@@ -4,12 +4,11 @@ import Overlay from "./overlay/Overlay";
 
 function Navigate() {
   const context = useContext(Mycontext);
-  const [cartList, setCartList] = useState(false);
   const [isOverlay, setOverlay] = useState(false);
   const sectionRef = useRef(null);
 
   const handleList = () => {
-    setCartList(!cartList);
+    context.setCartList(!context.cartList);
   };
   //counts products amount in cart
   let products = 0;
@@ -89,7 +88,7 @@ function Navigate() {
           alt="avatar"
           className="w-6 h-6 rounded-full"
         />
-        {cartList ? (
+        {context.cartList ? (
           <div
             ref={sectionRef}
             className="w-[360px] bg-[#fff] rounded-[10px] flex flex-col items-center gap-6 shadow-cart absolute bottom-[-33px] right-[-17px] transform translate-y-full z-10"
