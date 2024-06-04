@@ -67,12 +67,34 @@ function Navigate() {
   //   }
   // });
   return (
-    <header className="flex justify-between items-center px-6 pt-[19px] pb-6">
-      <div className="flex gap-4 items-center">
-        <img onClick={openOverlay} src="/images/icon-menu.svg" alt="menu" />
+    <header className="flex justify-between items-center px-6 lg:px-[0px] pt-[19px] lg:pt-[28px] pb-6 lg:pb-[34px]  lg:border-b lg:border-solid lg:border-[#e4e9f2]">
+      <div className="flex gap-4 lg:gap-[56px] items-center">
+        <img
+          onClick={openOverlay}
+          className="lg:hidden"
+          src="/images/icon-menu.svg"
+          alt="menu"
+        />
         <img src="/images/logo.svg" alt="logo" />
+        <nav className="flex items-center gap-8 hidden lg:flex">
+          <h2 className="text-[15px] text-[#69707d] font-[500] leading-[1.73]">
+            Collections
+          </h2>
+          <h2 className="text-[15px] text-[#69707d] font-[500] leading-[1.73]">
+            Men
+          </h2>
+          <h2 className="text-[15px] text-[#69707d] font-[500] leading-[1.73]">
+            Women
+          </h2>
+          <h2 className="text-[15px] text-[#69707d] font-[500] leading-[1.73]">
+            About
+          </h2>
+          <h2 className="text-[15px] text-[#69707d] font-[500] leading-[1.73]">
+            Contact
+          </h2>
+        </nav>
       </div>
-      <div className="flex items-center gap-[22px] relative">
+      <div className="flex items-center gap-[22px] lg:gap-[46px] relative">
         <div className="relative">
           <img onClick={handleList} src="/images/icon-cart.svg" alt="cart" />
           {context.useData.user[0].cart.length > 0 ? (
@@ -86,7 +108,7 @@ function Navigate() {
         <img
           src="/images/image-avatar.png"
           alt="avatar"
-          className="w-6 h-6 rounded-full"
+          className="w-6 lg:w-[50px] h-6 lg:h-[50px] rounded-full"
         />
         {context.cartList ? (
           <div
