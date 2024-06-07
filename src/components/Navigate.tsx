@@ -49,49 +49,115 @@ function Navigate() {
     setOverlay(true);
   };
 
-  // closes the cart section after click on other place
+  // routes for menu
+  const [activeMenu, setActiveMenu] = useState({
+    Collections: true,
+    Men: false,
+    Women: false,
+    About: false,
+    Contact: false,
+  });
+  const menuDr = (e) => {
+    const closedRoutes = {
+      Collections: false,
+      Men: false,
+      Women: false,
+      About: false,
+      Contact: false,
+    };
+    const target = e.target;
+    setActiveMenu(() => {
+      return {
+        ...closedRoutes,
+        [target.innerText]: true,
+      };
+    });
+    console.log(activeMenu);
+  };
 
-  // useEffect(() => {
-  //   if (cartList) {
-  //     const handleOutsideClick = (event) => {
-  //       if (sectionRef.current && !sectionRef.current.contains(event.target)) {
-  //         setCartList(false);
-  //       }
-  //     };
-
-  //     document.addEventListener("click", handleOutsideClick);
-
-  //     return () => {
-  //       document.removeEventListener("click", handleOutsideClick);
-  //     };
-  //   }
-  // });
   return (
-    <header className="flex justify-between items-center px-6 lg:px-[0px] pt-[19px] lg:pt-[28px] pb-6 lg:pb-[34px]  lg:border-b lg:border-solid lg:border-[#e4e9f2]">
-      <div className="flex gap-4 lg:gap-[56px] items-center">
+    <header className="flex justify-between items-center lg:items-start px-6 lg:px-[0px] pt-[19px] lg:pt-[28px] pb-6 lg:pb-[0px]  lg:border-b lg:border-solid lg:border-[#e4e9f2]">
+      <div className="flex gap-4 lg:gap-[56px] items-center lg:items-start lg:pt-[13px]">
         <img
           onClick={openOverlay}
           className="lg:hidden"
           src="/images/icon-menu.svg"
           alt="menu"
         />
-        <img src="/images/logo.svg" alt="logo" />
-        <nav className="flex items-center gap-8 hidden lg:flex">
-          <h2 className="text-[15px] text-[#69707d] font-[500] leading-[1.73]">
-            Collections
-          </h2>
-          <h2 className="text-[15px] text-[#69707d] font-[500] leading-[1.73]">
-            Men
-          </h2>
-          <h2 className="text-[15px] text-[#69707d] font-[500] leading-[1.73]">
-            Women
-          </h2>
-          <h2 className="text-[15px] text-[#69707d] font-[500] leading-[1.73]">
-            About
-          </h2>
-          <h2 className="text-[15px] text-[#69707d] font-[500] leading-[1.73]">
-            Contact
-          </h2>
+        <img className="lg:mt-[2px]" src="/images/logo.svg" alt="logo" />
+        <nav className="flex items-center lg:items-start gap-8 hidden lg:flex">
+          <div
+            className={
+              activeMenu.Collections
+                ? "border-b-4 border-solid border-[#ff7e1b] pb-10"
+                : ""
+            }
+          >
+            <h2
+              onClick={menuDr}
+              className={`${
+                activeMenu.Collections ? "text-[#1d2026]" : ""
+              } text-[15px] text-[#69707d] font-[500] leading-[1.73] hover:text-[#1d2026] hover:cursor-pointer`}
+            >
+              Collections
+            </h2>
+          </div>
+          <div
+            className={
+              activeMenu.Men
+                ? "border-b-4 border-solid border-[#ff7e1b] pb-10"
+                : ""
+            }
+          >
+            <h2
+              onClick={menuDr}
+              className="text-[15px] text-[#69707d] font-[500] leading-[1.73]"
+            >
+              Men
+            </h2>
+          </div>
+          <div
+            className={
+              activeMenu.Women
+                ? "border-b-4 border-solid border-[#ff7e1b] pb-10"
+                : ""
+            }
+          >
+            <h2
+              onClick={menuDr}
+              className="text-[15px] text-[#69707d] font-[500] leading-[1.73]"
+            >
+              Women
+            </h2>
+          </div>
+          <div
+            className={
+              activeMenu.About
+                ? "border-b-4 border-solid border-[#ff7e1b] pb-10"
+                : ""
+            }
+          >
+            <h2
+              onClick={menuDr}
+              className="text-[15px] text-[#69707d] font-[500] leading-[1.73]"
+            >
+              About
+            </h2>
+          </div>
+          <div
+            className={
+              activeMenu.Contact
+                ? "border-b-4 border-solid border-[#ff7e1b] pb-10"
+                : ""
+            }
+          >
+            <h2
+              onClick={menuDr}
+              className="text-[15px] text-[#69707d] font-[500] leading-[1.73]"
+            >
+              Contact
+            </h2>
+          </div>
         </nav>
       </div>
       <div className="flex items-center gap-[22px] lg:gap-[46px] relative">

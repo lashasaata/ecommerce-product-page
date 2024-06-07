@@ -14,7 +14,7 @@ function App() {
   const navigate = useNavigate();
 
   return (
-    <div className="lg:flex lg:flex-col lg:px-[75px] xl:px-[165px]">
+    <div className="lg:flex lg:flex-col lg:gap-[90px] lg:px-[75px] xl:px-[165px]">
       <Mycontext.Provider
         value={{
           useData,
