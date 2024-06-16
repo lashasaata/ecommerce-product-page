@@ -213,7 +213,7 @@ function Navigate() {
           className="w-6 lg:w-[50px] h-6 lg:h-[50px] rounded-full hover:cursor-pointer hover:border-2 hover:border-solid hover:border-[#ff7e1b]"
         />
         {context.cartList ? (
-          <div className="w-[360px] bg-[#fff] rounded-[10px] flex flex-col items-center gap-6 shadow-cart absolute bottom-[-33px] right-[-17px] transform translate-y-full z-10">
+          <div className="w-[360px] bg-[#fff] rounded-[10px] flex flex-col items-center gap-6 shadow-cart absolute bottom-[-33px] lg:bottom-[-16px] right-[-17px] lg:right-[-75px] transform translate-y-full z-10">
             <div className="w-full px-6 pt-6 pb-[27px] border-b order-solid border-[#e4e9f2]">
               <span className="text-base text-[#1d2026] fornt-[700] leading-[1]">
                 Cart
