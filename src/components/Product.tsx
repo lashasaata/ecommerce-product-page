@@ -73,14 +73,17 @@ function Product() {
     setAmount(0);
   };
   return (
-    <main onClick={() => context.setCartList(false)}>
+    <main
+      onClick={() => context.setCartList(false)}
+      className="lg:flex lg:justify-center lg:items-center"
+    >
       {context.useData.products
         .filter((element: Tproduct) => element.id == Number(id))
         .map((e: Tproduct, index: number) => {
           return (
             <div
               key={index}
-              className="flex flex-col items-center gap-6 overflow-hidden"
+              className="flex flex-col lg:flex-row items-center gap-6 lg:gap-[125px] overflow-hidden"
             >
               <div className="relative">
                 <Slider ref={slider} {...settings}>
@@ -118,11 +121,11 @@ function Product() {
                   />
                 </button>
               </div>
-              <section className="w-[327px] flex flex-col gap-4 mb-20">
-                <span className="text-xs text-[#ff7e1b] font-[700] tracking-[1.85px]">
+              <section className="w-[327px] lg:w-[445px] flex flex-col gap-4 lg:gap-[28px] mb-20">
+                <span className="text-xs lg:text-[13px] text-[#ff7e1b] font-[700] tracking-[1.85px] lg:tracking-[2] leading-[13px]">
                   {e.company}
                 </span>
-                <h1 className="text-[28px] text-[#1d2026] font-[700] leading-[1.14] mt-[3px]">
+                <h1 className="text-[28px] lg:text-[44px] text-[#1d2026] font-[700] leading-[1.14] lg:leading-[1.09] mt-[3px] lg:mt-0">
                   {e.name}
                 </h1>
                 <p className="text-[15px] text-[#69707d] font-[500] leading-[1.67]">
