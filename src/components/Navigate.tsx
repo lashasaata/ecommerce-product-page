@@ -96,8 +96,8 @@ function Navigate() {
             <h2
               onClick={menuDr}
               className={`${
-                activeMenu.Collections ? "text-[#1d2026]" : ""
-              } text-[15px] text-[#69707d] font-[500] leading-[1.73] hover:text-[#1d2026] hover:cursor-pointer`}
+                activeMenu.Collections ? "text-[#1d2026]" : "text-[#69707d]"
+              } text-[15px] font-[500] leading-[1.73] hover:text-[#1d2026] hover:cursor-pointer`}
             >
               Collections
             </h2>
@@ -111,7 +111,9 @@ function Navigate() {
           >
             <h2
               onClick={menuDr}
-              className="text-[15px] text-[#69707d] font-[500] leading-[1.73]"
+              className={`${
+                activeMenu.Men ? "text-[#1d2026]" : "text-[#69707d]"
+              } text-[15px] font-[500] leading-[1.73] hover:text-[#1d2026] hover:cursor-pointer`}
             >
               Men
             </h2>
@@ -125,7 +127,9 @@ function Navigate() {
           >
             <h2
               onClick={menuDr}
-              className="text-[15px] text-[#69707d] font-[500] leading-[1.73]"
+              className={`${
+                activeMenu.Women ? "text-[#1d2026]" : "text-[#69707d]"
+              } text-[15px] font-[500] leading-[1.73] hover:text-[#1d2026] hover:cursor-pointer`}
             >
               Women
             </h2>
@@ -139,7 +143,9 @@ function Navigate() {
           >
             <h2
               onClick={menuDr}
-              className="text-[15px] text-[#69707d] font-[500] leading-[1.73]"
+              className={`${
+                activeMenu.About ? "text-[#1d2026]" : "text-[#69707d]"
+              } text-[15px] font-[500] leading-[1.73] hover:text-[#1d2026] hover:cursor-pointer`}
             >
               About
             </h2>
@@ -153,7 +159,9 @@ function Navigate() {
           >
             <h2
               onClick={menuDr}
-              className="text-[15px] text-[#69707d] font-[500] leading-[1.73]"
+              className={`${
+                activeMenu.Contact ? "text-[#1d2026]" : "text-[#69707d]"
+              } text-[15px] font-[500] leading-[1.73] hover:text-[#1d2026] hover:cursor-pointer`}
             >
               Contact
             </h2>
