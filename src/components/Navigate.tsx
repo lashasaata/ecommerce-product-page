@@ -75,6 +75,16 @@ function Navigate() {
     console.log(activeMenu);
   };
 
+  // cart icon hovers
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleHover = () => {
+    setIsHovered(true);
+  };
+
+  const handleHoverOut = () => {
+    setIsHovered(false);
+  };
   return (
     <header className="flex justify-between items-center lg:items-start px-6 lg:px-[0px] pt-[19px] lg:pt-[28px] pb-6 lg:pb-[0px]  lg:border-b lg:border-solid lg:border-[#e4e9f2]">
       <div className="flex gap-4 lg:gap-[56px] items-center lg:items-start lg:pt-[13px]">
@@ -170,7 +180,25 @@ function Navigate() {
       </div>
       <div className="flex items-center gap-[22px] lg:gap-[46px] relative">
         <div className="relative">
-          <img onClick={handleList} src="/images/icon-cart.svg" alt="cart" />
+          <svg
+            onClick={handleList}
+            onMouseEnter={handleHover}
+            onMouseLeave={handleHoverOut}
+            className="hover:cursor-pointer"
+            width="21.5"
+            height="20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z"
+              fill={
+                context.cartList
+                  ? `${isHovered ? "#69707d" : "#1d2026"}`
+                  : `${isHovered ? "#1d2026" : "#69707d"}`
+              }
+              fillRule="nonzero"
+            />
+          </svg>
           {context.useData.user[0].cart.length > 0 ? (
             <div className="h-[13px] flex items-center rounded-[6.5px] bg-[#ff7e1b] px-[6px] text-[10px] text-[#fff] font-[700] leading-[10px] absolute top-[-6px] left-[9px]">
               {products}
@@ -182,13 +210,10 @@ function Navigate() {
         <img
           src="/images/image-avatar.png"
           alt="avatar"
-          className="w-6 lg:w-[50px] h-6 lg:h-[50px] rounded-full"
+          className="w-6 lg:w-[50px] h-6 lg:h-[50px] rounded-full hover:cursor-pointer hover:border-2 hover:border-solid hover:border-[#ff7e1b]"
         />
         {context.cartList ? (
-          <div
-            ref={sectionRef}
-            className="w-[360px] bg-[#fff] rounded-[10px] flex flex-col items-center gap-6 shadow-cart absolute bottom-[-33px] right-[-17px] transform translate-y-full z-10"
-          >
+          <div className="w-[360px] bg-[#fff] rounded-[10px] flex flex-col items-center gap-6 shadow-cart absolute bottom-[-33px] right-[-17px] transform translate-y-full z-10">
             <div className="w-full px-6 pt-6 pb-[27px] border-b order-solid border-[#e4e9f2]">
               <span className="text-base text-[#1d2026] fornt-[700] leading-[1]">
                 Cart
