@@ -72,7 +72,12 @@ function Navigate() {
         [target.innerText]: true,
       };
     });
-    console.log(activeMenu);
+    // navigate routes
+    if (target.innerText === "Collections") {
+      context.navigate(`/`);
+    } else {
+      context.navigate(`${target.innerText}`);
+    }
   };
 
   // cart icon hovers
