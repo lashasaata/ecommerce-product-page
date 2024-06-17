@@ -83,7 +83,7 @@ function Product() {
           return (
             <div
               key={index}
-              className="flex flex-col lg:flex-row items-center gap-6 lg:gap-[125px] overflow-hidden"
+              className="flex flex-col lg:flex-row items-center gap-6 lg:gap-[80px] xl:gap-[125px] overflow-hidden lg:mb-20"
             >
               <div className="relative">
                 <Slider ref={slider} {...settings}>
@@ -121,22 +121,22 @@ function Product() {
                   />
                 </button>
               </div>
-              <section className="w-[327px] lg:w-[445px] flex flex-col gap-4 lg:gap-[28px] mb-20">
+              <section className="w-[327px] lg:w-[445px] flex flex-col gap-4 lg:gap-[28px] mb-20 lg:mb-0">
                 <span className="text-xs lg:text-[13px] text-[#ff7e1b] font-[700] tracking-[1.85px] lg:tracking-[2] leading-[13px]">
                   {e.company}
                 </span>
                 <h1 className="text-[28px] lg:text-[44px] text-[#1d2026] font-[700] leading-[1.14] lg:leading-[1.09] mt-[3px] lg:mt-0">
                   {e.name}
                 </h1>
-                <p className="text-[15px] text-[#69707d] font-[500] leading-[1.67]">
+                <p className="text-[15px] lg:text-base text-[#69707d] font-[500] leading-[1.67] lg:leading-[1.63] lg:mt-1">
                   {e.description}
                 </p>
-                <div className="flex items-center justify-between mt-2">
+                <div className="flex lg:flex-col items-center lg:items-start lg:gap-[10px] justify-between mt-2 lg:mt-[-4px]">
                   <div className="flex items-center gap-4">
                     <span className="text-[28px] text-[#1d2026] font-[700] leading-[28px]">
                       ${(e.price * e.discount).toFixed(2)}
                     </span>
-                    <div className="w-[51px] bg-[#ffeee2] flex justify-center pt-[7px] pb-1 rounded-[6px] text-base text-[#ff7e1b] font-[700] leading-[16px] mt-1">
+                    <div className="w-[51px] bg-[#ffeee2] flex lg:items-end justify-center pt-[7px] pb-1 lg:pb-[6px] rounded-[6px] text-base text-[#ff7e1b] font-[700] leading-[16px] mt-1">
                       {e.discount * 100}%
                     </div>
                   </div>
@@ -144,10 +144,11 @@ function Product() {
                     ${e.price.toFixed(2)}
                   </span>
                 </div>
-                <section className="flex flex-col gap-4 mt-2">
-                  <div className="flex items-center justify-between bg-[#f6f8fd] rounded-[10px] pt-[22px] px-6 pb-[18px]">
+                <section className="flex flex-col lg:flex-row lg:justify-between gap-4 mt-2 lg:mt-1">
+                  <div className="lg:w-[176px] flex items-center justify-between bg-[#f6f8fd] rounded-[10px] pt-[22px] px-6 lg:px-4 pb-[18px]">
                     <img
                       onClick={cutproduct}
+                      className="hover:cursor-pointer"
                       src="/images/icon-minus.svg"
                       alt="minus"
                     />
@@ -156,13 +157,14 @@ function Product() {
                     </span>
                     <img
                       onClick={addproduct}
+                      className="hover:cursor-pointer"
                       src="/images/icon-plus.svg"
                       alt="plus"
                     />
                   </div>
                   <button
                     onClick={() => addHandler(e)}
-                    className="flex justify-center items-center gap-4 bg-[#ff7e1b] rounded-[10px] shadow-addToCart pt-[19px] pb-[18px]"
+                    className="lg:w-[232px] xl:w-[272px] flex justify-center items-center gap-4 bg-[#ff7e1b] rounded-[10px] shadow-addToCart pt-[19px] pb-[18px]"
                   >
                     <svg
                       className="hover:cursor-pointer"
