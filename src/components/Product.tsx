@@ -100,9 +100,35 @@ function Product() {
                     <img src={e.images.fourth} alt="fourth" />
                   </div>
                 </Slider>
+                <div className="flex items-center justify-between mt-8">
+                  <img
+                    src={e.images.first}
+                    alt="thumbnail-first"
+                    className="w-[88px] h-[88px] rounded-[10px] cursor-pointer"
+                    onClick={() => slider.current.slickGoTo(0)}
+                  />
+                  <img
+                    src={e.images.second}
+                    alt="thumbnail-second"
+                    className="w-[88px] h-[88px] rounded-[10px] cursor-pointer"
+                    onClick={() => slider.current.slickGoTo(1)}
+                  />
+                  <img
+                    src={e.images.third}
+                    alt="thumbnail-third"
+                    className="w-[88px] h-[88px] rounded-[10px] cursor-pointer"
+                    onClick={() => slider.current.slickGoTo(2)}
+                  />
+                  <img
+                    src={e.images.fourth}
+                    alt="thumbnail-fourth"
+                    className="w-[88px] h-[88px] rounded-[10px] cursor-pointer"
+                    onClick={() => slider.current.slickGoTo(3)}
+                  />
+                </div>
                 <button
                   onClick={previous}
-                  className="w-10 h-10 bg-[#fff] rounded-full flex items-center absolute top-1/2 left-[16px] transform -translate-y-1/2"
+                  className="w-10 h-10 bg-[#fff] rounded-full flex items-center absolute top-1/2 left-[16px] transform -translate-y-1/2 lg:hidden"
                 >
                   <img
                     src="/images/icon-previous.svg"
@@ -112,7 +138,7 @@ function Product() {
                 </button>
                 <button
                   onClick={next}
-                  className="w-10 h-10 bg-[#fff] rounded-full flex items-center justify-end absolute top-1/2 right-[16px] transform -translate-y-1/2"
+                  className="w-10 h-10 bg-[#fff] rounded-full flex items-center justify-end absolute top-1/2 right-[16px] transform -translate-y-1/2 lg:hidden"
                 >
                   <img
                     src="/images/icon-next.svg"

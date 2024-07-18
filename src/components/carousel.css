@@ -1,8 +1,22 @@
-.slick-list {
-  width: 375px;
-  height: 300px;
-  z-index: 0;
+@media only screen and (max-width: 1024px) {
+  .slick-list {
+    width: 375px;
+    height: 300px;
+    z-index: 0;
+  }
+  .slick-arrow && slick-prev {
+    position: absolute;
+  }
 }
-.slick-arrow && slick-prev {
-  position: absolute;
+
+@media only screen and (min-width: 1024px) {
+  .slick-list {
+    width: 445px;
+    height: 445px;
+    z-index: 0;
+    border-radius: 16px;
+  }
+  .slick-arrow && slick-prev {
+    position: hidden;
+  }
 }
