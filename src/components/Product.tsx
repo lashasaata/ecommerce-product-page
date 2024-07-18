@@ -72,6 +72,15 @@ function Product() {
     }
     setAmount(0);
   };
+
+  // active and hover styles for slider
+
+  const [activeThumbnail, setActiveThumbnail] = useState(0);
+
+  const handleAfterChange = (currentSlide) => {
+    setActiveThumbnail(currentSlide);
+  };
+
   return (
     <main
       onClick={() => context.setCartList(false)}
@@ -86,7 +95,11 @@ function Product() {
               className="flex flex-col lg:flex-row items-center gap-6 lg:gap-[80px] xl:gap-[125px] overflow-hidden lg:mb-20"
             >
               <div className="relative">
-                <Slider ref={slider} {...settings}>
+                <Slider
+                  ref={slider}
+                  {...settings}
+                  afterChange={handleAfterChange}
+                >
                   <div className="w-[300px] h-[300px] bg-[#12de3]">
                     <img src={e.images.first} alt="first" />
                   </div>
@@ -101,30 +114,78 @@ function Product() {
                   </div>
                 </Slider>
                 <div className="flex items-center justify-between mt-8">
-                  <img
-                    src={e.images.first}
-                    alt="thumbnail-first"
-                    className="w-[88px] h-[88px] rounded-[10px] cursor-pointer"
-                    onClick={() => slider.current.slickGoTo(0)}
-                  />
-                  <img
-                    src={e.images.second}
-                    alt="thumbnail-second"
-                    className="w-[88px] h-[88px] rounded-[10px] cursor-pointer"
-                    onClick={() => slider.current.slickGoTo(1)}
-                  />
-                  <img
-                    src={e.images.third}
-                    alt="thumbnail-third"
-                    className="w-[88px] h-[88px] rounded-[10px] cursor-pointer"
-                    onClick={() => slider.current.slickGoTo(2)}
-                  />
-                  <img
-                    src={e.images.fourth}
-                    alt="thumbnail-fourth"
-                    className="w-[88px] h-[88px] rounded-[10px] cursor-pointer"
-                    onClick={() => slider.current.slickGoTo(3)}
-                  />
+                  <div
+                    className={`${
+                      activeThumbnail == 0
+                        ? " w-[90px] h-[90px] border-[2px] border-solid border-[#ff7e1b] "
+                        : "w-[88px] h-[88px]"
+                    } rounded-[10px] cursor-pointer overflow-hidden`}
+                  >
+                    <img
+                      src={e.images.first}
+                      alt="thumbnail-fourth"
+                      className={`${
+                        activeThumbnail == 0
+                          ? " opacity-40"
+                          : "hover:opacity-60"
+                      } `}
+                      onClick={() => slider.current.slickGoTo(0)}
+                    />
+                  </div>
+                  <div
+                    className={`${
+                      activeThumbnail == 1
+                        ? " w-[90px] h-[90px] border-[2px] border-solid border-[#ff7e1b] "
+                        : "w-[88px] h-[88px]"
+                    } rounded-[10px] cursor-pointer overflow-hidden`}
+                  >
+                    <img
+                      src={e.images.second}
+                      alt="thumbnail-fourth"
+                      className={`${
+                        activeThumbnail == 1
+                          ? " opacity-40"
+                          : "hover:opacity-60"
+                      } `}
+                      onClick={() => slider.current.slickGoTo(1)}
+                    />
+                  </div>
+                  <div
+                    className={`${
+                      activeThumbnail == 2
+                        ? " w-[90px] h-[90px] border-[2px] border-solid border-[#ff7e1b] "
+                        : "w-[88px] h-[88px]"
+                    } rounded-[10px] cursor-pointer overflow-hidden`}
+                  >
+                    <img
+                      src={e.images.third}
+                      alt="thumbnail-fourth"
+                      className={`${
+                        activeThumbnail == 2
+                          ? " opacity-40"
+                          : "hover:opacity-60"
+                      } `}
+                      onClick={() => slider.current.slickGoTo(2)}
+                    />
+                  </div>
+                  <div
+                    className={`${
+                      activeThumbnail == 3
+                        ? " w-[90px] h-[90px] border-[2px] border-solid border-[#ff7e1b] "
+                        : "w-[88px] h-[88px]"
+                    } rounded-[10px] cursor-pointer overflow-hidden`}
+                  >
+                    <img
+                      src={e.images.fourth}
+                      alt="thumbnail-fourth"
+                      className={`${
+                        activeThumbnail == 3
+                          ? " opacity-40"
+                          : "hover:opacity-60"
+                      } `}
+                      onClick={() => slider.current.slickGoTo(3)}
+                    />
+                  </div>
                 </div>
                 <button
                   onClick={previous}
