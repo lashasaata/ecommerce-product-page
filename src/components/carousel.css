@@ -3,6 +3,7 @@
     width: 375px;
     height: 300px;
     z-index: 0;
+    outline: none;
   }
   .slick-arrow && slick-prev {
     position: absolute;
@@ -15,8 +16,12 @@
     height: 445px;
     z-index: 0;
     border-radius: 16px;
+    outline: none;
   }
   .slick-arrow && slick-prev {
-    position: hidden;
+    position: absolute;
+  }
+  .slick-arrow && slick-next {
+    position: absolute;
   }
 }
