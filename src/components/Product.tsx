@@ -6,6 +6,7 @@ import "./carousel.css";
 import { useParams } from "react-router-dom";
 import { useContext, useState, useRef } from "react";
 import { Mycontext } from "../App";
+import Carousel from "./overlay/Carousel";
 
 function Product() {
   const context = useContext(Mycontext);
@@ -21,16 +22,25 @@ function Product() {
     slidesToScroll: 1,
   };
   const slider = React.useRef(null);
+  const slider1 = React.useRef(null);
 
   const next = () => {
     if (slider.current) {
-      slider.current.slickNext();
+      if (useOverlay) {
+        slider1.current.slickNext();
+      } else {
+        slider.current.slickNext();
+      }
     }
   };
 
   const previous = () => {
     if (slider.current) {
-      slider.current.slickPrev();
+      if (useOverlay) {
+        slider1.current.slickPrev();
+      } else {
+        slider.current.slickPrev();
+      }
     }
   };
 
@@ -80,7 +90,12 @@ function Product() {
   const handleAfterChange = (currentSlide) => {
     setActiveThumbnail(currentSlide);
   };
+  // for overlay carousel
+  const [activeThumbnail1, setActiveThumbnail1] = useState(0);
 
+  const handleAfterChange1 = (currentSlide) => {
+    setActiveThumbnail1(currentSlide);
+  };
   //
   const [useOverlay, setOverlay] = useState(false);
   const [useHover, setHover] = useState(false);
@@ -111,21 +126,21 @@ function Product() {
                       onClick={() => setOverlay(true)}
                     />
                   </div>
-                  <div>
+                  <div className="hover:cursor-pointer">
                     <img
                       src={e.images.second}
                       alt="second"
                       onClick={() => setOverlay(true)}
                     />
                   </div>
-                  <div>
+                  <div className="hover:cursor-pointer">
                     <img
                       src={e.images.third}
                       alt="third"
                       onClick={() => setOverlay(true)}
                     />
                   </div>
-                  <div>
+                  <div className="hover:cursor-pointer">
                     <img
                       src={e.images.fourth}
                       alt="fourth"
@@ -134,9 +149,10 @@ function Product() {
                   </div>
                 </Slider>
                 {useOverlay ? (
+                  // <Carousel setOverlay={setOverlay} activeThumbnail={activeThumbnail} setActiveThumbnail={setActiveThumbnail}/>
                   <div className="absolute">
                     <div className="flex flex-col items-center justify-center w-screen h-screen fixed top-0 left-0 z-10 bg-overlay">
-                      <section className="flex flex-col justify-center">
+                      <section className="flex flex-col justify-center relative">
                         <svg
                           width="14"
                           height="15"
@@ -144,7 +160,10 @@ function Product() {
                           className="self-end mb-6 hover:cursor-pointer"
                           onMouseEnter={() => setHover(true)}
                           onMouseLeave={() => setHover(false)}
-                          onClick={() => setOverlay(false)}
+                          onClick={() => {
+                            setOverlay(false);
+                            stopPropagation();
+                          }}
                         >
                           <path
                             d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z"
@@ -153,45 +172,32 @@ function Product() {
                           />
                         </svg>
                         <Slider
-                          ref={slider}
+                          ref={slider1}
                           {...settings}
                           arrows={false}
-                          afterChange={handleAfterChange}
+                          afterChange={handleAfterChange1}
                         >
-                          <div className="hover:cursor-pointer">
+                          <div>
                             <img
                               src={e.images.first}
                               alt="first"
-                              className="lg:w-[550px] h-[550px"
-                              onClick={() => setOverlay(true)}
+                              className="lg:w-[550px] h-[550px]"
                             />
                           </div>
                           <div>
-                            <img
-                              src={e.images.second}
-                              alt="second"
-                              onClick={() => setOverlay(true)}
-                            />
+                            <img src={e.images.second} alt="second" />
                           </div>
                           <div>
-                            <img
-                              src={e.images.third}
-                              alt="third"
-                              onClick={() => setOverlay(true)}
-                            />
+                            <img src={e.images.third} alt="third" />
                           </div>
                           <div>
-                            <img
-                              src={e.images.fourth}
-                              alt="fourth"
-                              onClick={() => setOverlay(true)}
-                            />
+                            <img src={e.images.fourth} alt="fourth" />
                           </div>
                         </Slider>
                         <div className="flex items-center justify-between mt-8">
                           <div
                             className={`${
-                              activeThumbnail == 0
+                              activeThumbnail1 == 0
                                 ? " w-[90px] h-[90px] border-[2px] border-solid border-[#ff7e1b] "
                                 : "w-[88px] h-[88px]"
                             } rounded-[10px] cursor-pointer overflow-hidden`}
@@ -200,16 +206,16 @@ function Product() {
                               src={e.images.first}
                               alt="thumbnail-fourth"
                               className={`${
-                                activeThumbnail == 0
+                                activeThumbnail1 == 0
                                   ? " opacity-40"
                                   : "hover:opacity-60"
                               } `}
-                              onClick={() => slider.current.slickGoTo(0)}
+                              onClick={() => slider1.current.slickGoTo(0)}
                             />
                           </div>
                           <div
                             className={`${
-                              activeThumbnail == 1
+                              activeThumbnail1 == 1
                                 ? " w-[90px] h-[90px] border-[2px] border-solid border-[#ff7e1b] "
                                 : "w-[88px] h-[88px]"
                             } rounded-[10px] cursor-pointer overflow-hidden`}
@@ -218,16 +224,16 @@ function Product() {
                               src={e.images.second}
                               alt="thumbnail-fourth"
                               className={`${
-                                activeThumbnail == 1
+                                activeThumbnail1 == 1
                                   ? " opacity-40"
                                   : "hover:opacity-60"
                               } `}
-                              onClick={() => slider.current.slickGoTo(1)}
+                              onClick={() => slider1.current.slickGoTo(1)}
                             />
                           </div>
                           <div
                             className={`${
-                              activeThumbnail == 2
+                              activeThumbnail1 == 2
                                 ? " w-[90px] h-[90px] border-[2px] border-solid border-[#ff7e1b] "
                                 : "w-[88px] h-[88px]"
                             } rounded-[10px] cursor-pointer overflow-hidden`}
@@ -236,16 +242,16 @@ function Product() {
                               src={e.images.third}
                               alt="thumbnail-fourth"
                               className={`${
-                                activeThumbnail == 2
+                                activeThumbnail1 == 2
                                   ? " opacity-40"
                                   : "hover:opacity-60"
                               } `}
-                              onClick={() => slider.current.slickGoTo(2)}
+                              onClick={() => slider1.current.slickGoTo(2)}
                             />
                           </div>
                           <div
                             className={`${
-                              activeThumbnail == 3
+                              activeThumbnail1 == 3
                                 ? " w-[90px] h-[90px] border-[2px] border-solid border-[#ff7e1b] "
                                 : "w-[88px] h-[88px]"
                             } rounded-[10px] cursor-pointer overflow-hidden`}
@@ -254,32 +260,32 @@ function Product() {
                               src={e.images.fourth}
                               alt="thumbnail-fourth"
                               className={`${
-                                activeThumbnail == 3
+                                activeThumbnail1 == 3
                                   ? " opacity-40"
                                   : "hover:opacity-60"
                               } `}
-                              onClick={() => slider.current.slickGoTo(3)}
+                              onClick={() => slider1.current.slickGoTo(3)}
                             />
                           </div>
                         </div>
                         <button
                           onClick={previous}
-                          className="w-10 h-10 bg-[#fff] rounded-full flex items-center absolute top-1/2 left-[16px] transform -translate-y-1/2"
+                          className="w-[56px] h-[56px] bg-[#fff] rounded-full flex items-center absolute top-[237px] left-[0px] transform -translate-x-1/2"
                         >
                           <img
                             src="/images/icon-previous.svg"
                             alt="previous"
-                            className="h-3 ml-[15px]"
+                            className="h-4 ml-[20px]"
                           />
                         </button>
                         <button
                           onClick={next}
-                          className="w-10 h-10 bg-[#fff] rounded-full flex items-center justify-end absolute top-1/2 right-[16px] transform -translate-y-1/2"
+                          className="w-[56px] h-[56px] bg-[#fff] rounded-full flex items-center justify-end absolute top-[237px] right-[0px] transform translate-x-1/2"
                         >
                           <img
                             src="/images/icon-next.svg"
                             alt="next"
-                            className="h-3 mr-[15px]"
+                            className="h-4 mr-[20px]"
                           />
                         </button>
                       </section>
