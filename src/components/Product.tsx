@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -6,7 +6,6 @@ import "./carousel.css";
 import { useParams } from "react-router-dom";
 import { useContext, useState, useRef } from "react";
 import { Mycontext } from "../App";
-import Carousel from "./overlay/Carousel";
 
 function Product() {
   const context = useContext(Mycontext);
@@ -90,12 +89,24 @@ function Product() {
   const handleAfterChange = (currentSlide) => {
     setActiveThumbnail(currentSlide);
   };
+
+  useEffect(() => {
+    if (useOverlay) {
+      slider1.current.slickGoTo(activeThumbnail);
+      setActiveThumbnail1(activeThumbnail);
+    }
+  }, []);
+
   // for overlay carousel
   const [activeThumbnail1, setActiveThumbnail1] = useState(0);
 
   const handleAfterChange1 = (currentSlide) => {
     setActiveThumbnail1(currentSlide);
   };
+  console.log(activeThumbnail1);
+  if (slider1.current) {
+    console.log("xxx");
+  }
   //
   const [useOverlay, setOverlay] = useState(false);
   const [useHover, setHover] = useState(false);
@@ -113,7 +124,7 @@ function Product() {
               key={index}
               className="flex flex-col lg:flex-row items-center gap-6 lg:gap-[80px] xl:gap-[125px] overflow-hidden lg:mb-20"
             >
-              <div className="relative">
+              <div className="relative main-carousel">
                 <Slider
                   ref={slider}
                   {...settings}
@@ -149,10 +160,9 @@ function Product() {
                   </div>
                 </Slider>
                 {useOverlay ? (
-                  // <Carousel setOverlay={setOverlay} activeThumbnail={activeThumbnail} setActiveThumbnail={setActiveThumbnail}/>
                   <div className="absolute">
                     <div className="flex flex-col items-center justify-center w-screen h-screen fixed top-0 left-0 z-10 bg-overlay">
-                      <section className="flex flex-col justify-center relative">
+                      <section className="flex flex-col justify-center relative overlay-carousel">
                         <svg
                           width="14"
                           height="15"
@@ -162,7 +172,7 @@ function Product() {
                           onMouseLeave={() => setHover(false)}
                           onClick={() => {
                             setOverlay(false);
-                            stopPropagation();
+                            // stopPropagation();
                           }}
                         >
                           <path
@@ -178,11 +188,7 @@ function Product() {
                           afterChange={handleAfterChange1}
                         >
                           <div>
-                            <img
-                              src={e.images.first}
-                              alt="first"
-                              className="lg:w-[550px] h-[550px]"
-                            />
+                            <img src={e.images.first} alt="first" />
                           </div>
                           <div>
                             <img src={e.images.second} alt="second" />
@@ -194,7 +200,7 @@ function Product() {
                             <img src={e.images.fourth} alt="fourth" />
                           </div>
                         </Slider>
-                        <div className="flex items-center justify-between mt-8">
+                        <div className="flex items-center justify-center lg:gap-8 mt-10">
                           <div
                             className={`${
                               activeThumbnail1 == 0
@@ -270,7 +276,7 @@ function Product() {
                         </div>
                         <button
                           onClick={previous}
-                          className="w-[56px] h-[56px] bg-[#fff] rounded-full flex items-center absolute top-[237px] left-[0px] transform -translate-x-1/2"
+                          className="w-[56px] h-[56px] bg-[#fff] rounded-full flex items-center absolute top-[277px] left-[0px] transform -translate-x-1/2 hidden lg:flex"
                         >
                           <img
                             src="/images/icon-previous.svg"
@@ -280,7 +286,7 @@ function Product() {
                         </button>
                         <button
                           onClick={next}
-                          className="w-[56px] h-[56px] bg-[#fff] rounded-full flex items-center justify-end absolute top-[237px] right-[0px] transform translate-x-1/2"
+                          className="w-[56px] h-[56px] bg-[#fff] rounded-full flex items-center justify-end absolute top-[277px] right-[0px] transform translate-x-1/2 hidden lg:flex"
                         >
                           <img
                             src="/images/icon-next.svg"
