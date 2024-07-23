@@ -290,23 +290,41 @@ function Product() {
                         </div>
                         <button
                           onClick={previous}
+                          onMouseEnter={() => setPrevHover(true)}
+                          onMouseLeave={() => setPrevHover(false)}
                           className="w-[56px] h-[56px] bg-[#fff] rounded-full flex items-center absolute top-[277px] left-[0px] transform -translate-x-1/2 hidden lg:flex"
                         >
-                          <img
-                            src="/images/icon-previous.svg"
-                            alt="previous"
-                            className="h-4 ml-[20px]"
-                          />
+                          <svg
+                            width="12"
+                            height="18"
+                            className="ml-[20px]"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M11 1 3 9l8 8"
+                              fill={prevHover ? "#ff7e1b" : "#1D2026"}
+                              fillRule="evenodd"
+                            />
+                          </svg>
                         </button>
                         <button
                           onClick={next}
+                          onMouseEnter={() => setNextHover(true)}
+                          onMouseLeave={() => setNextHover(false)}
                           className="w-[56px] h-[56px] bg-[#fff] rounded-full flex items-center justify-end absolute top-[277px] right-[0px] transform translate-x-1/2 hidden lg:flex"
                         >
-                          <img
-                            src="/images/icon-next.svg"
-                            alt="next"
-                            className="h-4 mr-[20px]"
-                          />
+                          <svg
+                            width="13"
+                            height="18"
+                            className="mr-[20px]"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="m2 1 8 8-8 8"
+                              fill={nextHover ? "#ff7e1b" : "#1D2026"}
+                              fillRule="evenodd"
+                            />
+                          </svg>
                         </button>
                       </section>
                     </div>
@@ -392,12 +410,12 @@ function Product() {
                   onClick={previous}
                   onMouseEnter={() => setPrevHover(true)}
                   onMouseLeave={() => setPrevHover(false)}
-                  className="w-10 h-10 bg-[#fff] rounded-full flex items-center absolute top-1/2 left-[16px] transform -translate-y-1/2 lg:hidden"
+                  className="w-10 h-10 bg-[#fff] rounded-full flex items-center absolute top-[190px] left-[16px] transform -translate-y-1/2 lg:hidden"
                 >
                   <svg
                     width="12"
                     height="18"
-                    className="ml-[15px]"
+                    className="ml-[12px]"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -411,12 +429,12 @@ function Product() {
                   onClick={next}
                   onMouseEnter={() => setNextHover(true)}
                   onMouseLeave={() => setNextHover(false)}
-                  className="w-10 h-10 bg-[#fff] rounded-full flex items-center justify-end absolute top-1/2 right-[16px] transform -translate-y-1/2 lg:hidden"
+                  className="w-10 h-10 bg-[#fff] rounded-full flex items-center justify-end absolute top-[190px] right-[16px] transform -translate-y-1/2 lg:hidden"
                 >
                   <svg
                     width="13"
                     height="18"
-                    className="mr-[15px]"
+                    className="mr-[12px]"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
