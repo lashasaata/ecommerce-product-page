@@ -90,26 +90,30 @@ function Product() {
     setActiveThumbnail(currentSlide);
   };
 
-  useEffect(() => {
-    if (useOverlay) {
-      slider1.current.slickGoTo(activeThumbnail);
-      setActiveThumbnail1(activeThumbnail);
-    }
-  }, []);
-
   // for overlay carousel
   const [activeThumbnail1, setActiveThumbnail1] = useState(0);
 
   const handleAfterChange1 = (currentSlide) => {
     setActiveThumbnail1(currentSlide);
   };
-  console.log(activeThumbnail1);
-  if (slider1.current) {
-    console.log("xxx");
-  }
-  //
+
+  // setting hovers andoverlay
   const [useOverlay, setOverlay] = useState(false);
   const [useHover, setHover] = useState(false);
+  const [prevHover, setPrevHover] = useState(false);
+  const [nextHover, setNextHover] = useState(false);
+
+  // moves overlay's carousel at where at the main clicked
+  useEffect(() => {
+    if (useOverlay) {
+      setTimeout(() => {
+        if (slider1.current) {
+          slider1.current.slickGoTo(activeThumbnail);
+          setActiveThumbnail1(activeThumbnail);
+        }
+      }, 100);
+    }
+  }, [useOverlay]);
 
   return (
     <main
@@ -172,7 +176,6 @@ function Product() {
                           onMouseLeave={() => setHover(false)}
                           onClick={() => {
                             setOverlay(false);
-                            // stopPropagation();
                           }}
                         >
                           <path
@@ -376,23 +379,41 @@ function Product() {
                 </div>
                 <button
                   onClick={previous}
+                  onMouseEnter={() => setPrevHover(true)}
+                  onMouseLeave={() => setPrevHover(false)}
                   className="w-10 h-10 bg-[#fff] rounded-full flex items-center absolute top-1/2 left-[16px] transform -translate-y-1/2 lg:hidden"
                 >
-                  <img
-                    src="/images/icon-previous.svg"
-                    alt="previous"
-                    className="h-3 ml-[15px]"
-                  />
+                  <svg
+                    width="12"
+                    height="18"
+                    className="ml-[15px]"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M11 1 3 9l8 8"
+                      fill={prevHover ? "#ff7e1b" : "#1D2026"}
+                      fillRule="evenodd"
+                    />
+                  </svg>
                 </button>
                 <button
                   onClick={next}
+                  onMouseEnter={() => setNextHover(true)}
+                  onMouseLeave={() => setNextHover(false)}
                   className="w-10 h-10 bg-[#fff] rounded-full flex items-center justify-end absolute top-1/2 right-[16px] transform -translate-y-1/2 lg:hidden"
                 >
-                  <img
-                    src="/images/icon-next.svg"
-                    alt="next"
-                    className="h-3 mr-[15px]"
-                  />
+                  <svg
+                    width="13"
+                    height="18"
+                    className="mr-[15px]"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="m2 1 8 8-8 8"
+                      fill={nextHover ? "#ff7e1b" : "#1D2026"}
+                      fillRule="evenodd"
+                    />
+                  </svg>
                 </button>
               </div>
               <section className="w-[327px] lg:w-[445px] flex flex-col gap-4 lg:gap-[28px] mb-20 lg:mb-0">
