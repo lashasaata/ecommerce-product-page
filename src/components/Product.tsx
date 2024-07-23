@@ -114,6 +114,17 @@ function Product() {
       }, 100);
     }
   }, [useOverlay]);
+  // for close img
+  useEffect(() => {
+    if (!useOverlay) {
+      setTimeout(() => {
+        if (slider.current) {
+          slider.current.slickGoTo(activeThumbnail1);
+          setActiveThumbnail(activeThumbnail1);
+        }
+      }, 100);
+    }
+  }, [useOverlay]);
 
   return (
     <main
