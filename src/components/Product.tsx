@@ -42,7 +42,12 @@ function Product() {
   };
 
   //
-  const [amount, setAmount] = useState(1);
+  const [amount, setAmount] = useState(() => {
+    return localStorage.amount ? JSON.parse(localStorage.amount) : 1;
+  });
+  useEffect(() => {
+    localStorage.setItem("amount", JSON.stringify(amount));
+  }, [amount]);
   const addproduct = () => {
     if (amount !== 10) {
       setAmount(amount + 1);
@@ -135,7 +140,7 @@ function Product() {
           return (
             <div
               key={index}
-              className="flex flex-col lg:flex-row items-center gap-6 lg:gap-[80px] xl:gap-[125px] overflow-hidden lg:mb-20"
+              className="flex flex-col lg:flex-row items-center gap-6 lg:gap-[30px] xl:gap-[125px] overflow-hidden lg:mb-20"
             >
               <div className="relative main-carousel">
                 <Slider
