@@ -11,9 +11,21 @@ function Navigate() {
     context.setCartList(!context.cartList);
   };
   //counts products amount in cart
-  let products = 0;
-  context.useData.user[0].cart.map((e) => (products += e.amount));
+  let products = localStorage.products ? JSON.parse(localStorage.products) : 0;
+  let len = 0;
+  useEffect(() => {
+    if (len != context.useData.user[0].cart.length) {
+      context.useData.user[0].cart.map((e) => (products += e.amount));
+    }
+    len = context.useData.user[0].cart.length;
+  }, []);
 
+  useEffect(() => {
+    localStorage.setItem(`products`, JSON.stringify(products));
+  }, [products]);
+
+  console.log(localStorage);
+  console.log(products);
   //delete product from the cart
   const handleDelete = (id: number) => {
     const updatedUser: Tdata = {
@@ -50,12 +62,18 @@ function Navigate() {
   };
 
   // routes for menu
-  const [activeMenu, setActiveMenu] = useState({
-    Collections: true,
-    Men: false,
-    Women: false,
-    About: false,
-    Contact: false,
+  const [activeMenu, setActiveMenu] = useState(() => {
+    if (localStorage.activeMenu) {
+      return JSON.parse(localStorage.activeMenu);
+    } else {
+      return {
+        Collections: true,
+        Men: false,
+        Women: false,
+        About: false,
+        Contact: false,
+      };
+    }
   });
   const menuDr = (e) => {
     const closedRoutes = {
@@ -80,6 +98,10 @@ function Navigate() {
     }
   };
 
+  useEffect(() => {
+    localStorage.setItem("activeMenu", JSON.stringify(activeMenu));
+  }, [activeMenu]);
+
   // cart icon hovers
   const [isHovered, setIsHovered] = useState(false);
 
@@ -92,7 +114,10 @@ function Navigate() {
   };
   return (
     <header className="flex justify-between items-center lg:items-start px-6 lg:px-[0px] pt-[19px] lg:pt-[28px] pb-6 lg:pb-[0px]  lg:border-b lg:border-solid lg:border-[#e4e9f2]">
-      <div className="flex gap-4 lg:gap-[56px] items-center lg:items-start lg:pt-[13px]">
+      <div
+        className="flex gap-4 lg:gap-[56px] items-center lg:items-start lg:pt-[13px]"
+        onClick={() => context.setCartList(false)}
+      >
         <img
           onClick={openOverlay}
           className="lg:hidden"
