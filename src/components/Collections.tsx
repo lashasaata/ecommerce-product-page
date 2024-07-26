@@ -4,7 +4,10 @@ function Collections({ value }: { value: string }) {
   const context = useContext(Mycontext);
 
   return (
-    <div className="flex justify-center md:justify-start flex-wrap gap-10 md:p-10 mb-20">
+    <div
+      className="flex justify-center md:justify-start flex-wrap gap-10 md:p-10 mb-20"
+      onClick={() => context.setCartList(false)}
+    >
       {value === "Collections"
         ? context.useData.products.map((e, index: number) => {
             return (
