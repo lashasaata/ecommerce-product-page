@@ -26,10 +26,10 @@ function App() {
       >
         <Navigate />
         <Routes>
-          <Route path="/" element={<Collections />} />
+          <Route path="/" element={<Collections value={"Collections"} />} />
           <Route path="/:id" element={<Product />} />
-          <Route />
-          <Route />
+          <Route path="/Men" element={<Collections value={"Men"} />} />
+          <Route path="/Women" element={<Collections value={"Women"} />} />
           <Route />
           <Route />
         </Routes>

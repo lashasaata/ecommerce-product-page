@@ -458,7 +458,7 @@ function Product() {
                 <div className="flex lg:flex-col items-center lg:items-start lg:gap-[10px] justify-between mt-2 lg:mt-[-4px]">
                   <div className="flex items-center gap-4">
                     <span className="text-[28px] text-[#1d2026] font-[700] leading-[28px]">
-                      ${(e.price * e.discount).toFixed(2)}
+                      ${(e.price - e.price * e.discount).toFixed(2)}
                     </span>
                     <div className="w-[51px] bg-[#ffeee2] flex lg:items-end justify-center pt-[7px] pb-1 lg:pb-[6px] rounded-[6px] text-base text-[#ff7e1b] font-[700] leading-[16px] mt-1">
                       {e.discount * 100}%
