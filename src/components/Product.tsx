@@ -12,8 +12,6 @@ function Product() {
   const params = useParams();
   const id = params.id;
 
-  const findPrice = () => {};
-
   var settings = {
     infinite: true,
     speed: 300,
@@ -44,14 +42,14 @@ function Product() {
   };
 
   //
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState(1);
   const addproduct = () => {
     if (amount !== 10) {
       setAmount(amount + 1);
     }
   };
   const cutproduct = () => {
-    if (amount !== 0) {
+    if (amount !== 1) {
       setAmount(amount - 1);
     }
   };
@@ -67,7 +65,7 @@ function Product() {
               id: Math.floor(Math.random() * 1000),
               name: e.name,
               image: e.images.first,
-              price: e.price * e.discount,
+              price: (e.price * (1 - e.discount)).toFixed(2),
               amount: amount,
             },
           ],
@@ -79,7 +77,7 @@ function Product() {
         };
       });
     }
-    setAmount(0);
+    setAmount(1);
   };
 
   // active and hover styles for slider
@@ -458,14 +456,14 @@ function Product() {
                 <div className="flex lg:flex-col items-center lg:items-start lg:gap-[10px] justify-between mt-2 lg:mt-[-4px]">
                   <div className="flex items-center gap-4">
                     <span className="text-[28px] text-[#1d2026] font-[700] leading-[28px]">
-                      ${(e.price - e.price * e.discount).toFixed(2)}
+                      ${(amount * (e.price - e.price * e.discount)).toFixed(2)}
                     </span>
                     <div className="w-[51px] bg-[#ffeee2] flex lg:items-end justify-center pt-[7px] pb-1 lg:pb-[6px] rounded-[6px] text-base text-[#ff7e1b] font-[700] leading-[16px] mt-1">
                       {e.discount * 100}%
                     </div>
                   </div>
                   <span className="text-base text-[#b6bcc8] font-[700] leading-[1.63] line-through">
-                    ${e.price.toFixed(2)}
+                    ${(amount * e.price).toFixed(2)}
                   </span>
                 </div>
                 <section className="flex flex-col lg:flex-row lg:justify-between gap-4 mt-2 lg:mt-1">
