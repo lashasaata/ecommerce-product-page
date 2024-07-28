@@ -11,14 +11,8 @@ function Navigate() {
     context.setCartList(!context.cartList);
   };
   //counts products amount in cart
-  let products = localStorage.products ? JSON.parse(localStorage.products) : 0;
-  let len = 0;
-  useEffect(() => {
-    if (len != context.useData.user[0].cart.length) {
-      context.useData.user[0].cart.map((e) => (products += e.amount));
-    }
-    len = context.useData.user[0].cart.length;
-  }, []);
+  let products = 0;
+  context.useData.user[0].cart.map((e) => (products += e.amount));
 
   useEffect(() => {
     localStorage.setItem(`products`, JSON.stringify(products));
