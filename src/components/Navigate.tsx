@@ -245,7 +245,7 @@ function Navigate() {
         {context.cartList ? (
           <div className="w-[360px] bg-[#fff] rounded-[10px] flex flex-col items-center gap-6 shadow-cart absolute bottom-[-33px] lg:bottom-[-16px] right-[-17px] lg:right-[-75px] transform translate-y-full z-10">
             <div className="w-full px-6 pt-6 pb-[27px] border-b order-solid border-[#e4e9f2]">
-              <span className="text-base text-[#1d2026] fornt-[700] leading-[1]">
+              <span className="text-base text-[#1d2026] fornt-[900] leading-[1]">
                 Cart
               </span>
             </div>
@@ -294,7 +294,7 @@ function Navigate() {
                 </div>
                 <button
                   onClick={purchase}
-                  className="w-[312px] h-[56px] rounded-[10px] bg-[#ff7e1b] flex justify-center pt-[22px] mb-[32px] text-base text-[#fff] font-[700] leading-[1] "
+                  className="w-[312px] h-[56px] rounded-[10px] bg-[#ff7e1b] hover:bg-[#ffab6a] hover:cursor-pointer flex justify-center pt-[22px] mb-[32px] text-base text-[#fff] font-[700] leading-[1] "
                 >
                   Checkout
                 </button>
