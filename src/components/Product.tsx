@@ -235,7 +235,7 @@ function Product() {
                             <img src={e.images.fourth} alt="fourth" />
                           </div>
                         </Slider>
-                        <div className="flex items-center justify-center lg:gap-8 mt-10">
+                        <div className="flex items-center justify-center md:gap-5 lg:gap-8 md:mt-4 lg:mt-10">
                           <div
                             className={`${
                               activeThumbnail1 == 0

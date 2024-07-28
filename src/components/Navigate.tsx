@@ -18,8 +18,6 @@ function Navigate() {
     localStorage.setItem(`products`, JSON.stringify(products));
   }, [products]);
 
-  console.log(localStorage);
-  console.log(products);
   //delete product from the cart
   const handleDelete = (id: number) => {
     const updatedUser: Tdata = {
@@ -280,7 +278,7 @@ function Navigate() {
                           onClick={() => handleDelete(e.id)}
                           src="/images/icon-delete.svg"
                           alt="delete"
-                          className="ml-1"
+                          className="ml-1 hover:cursor-pointer"
                         />
                       </section>
                     );
