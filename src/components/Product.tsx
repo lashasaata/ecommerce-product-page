@@ -313,7 +313,7 @@ function Product() {
                           onClick={previous}
                           onMouseEnter={() => setPrevHover(true)}
                           onMouseLeave={() => setPrevHover(false)}
-                          className="w-[56px] h-[56px] bg-[#fff] rounded-full flex items-center absolute top-[277px] left-[0px] transform -translate-x-1/2 hidden lg:flex"
+                          className="w-[56px] h-[56px] bg-[#f6f3f3] rounded-full flex items-center absolute top-[277px] left-[0px] transform -translate-x-1/2 hidden lg:flex shadow-circle"
                         >
                           <svg
                             width="12"
@@ -332,7 +332,7 @@ function Product() {
                           onClick={next}
                           onMouseEnter={() => setNextHover(true)}
                           onMouseLeave={() => setNextHover(false)}
-                          className="w-[56px] h-[56px] bg-[#fff] rounded-full flex items-center justify-end absolute top-[277px] right-[0px] transform translate-x-1/2 hidden lg:flex"
+                          className="w-[56px] h-[56px] bg-[#f6f3f3] rounded-full flex items-center justify-end absolute top-[277px] right-[0px] transform translate-x-1/2 hidden lg:flex shadow-circle"
                         >
                           <svg
                             width="13"
@@ -431,7 +431,7 @@ function Product() {
                   onClick={previous}
                   onMouseEnter={() => setPrevHover(true)}
                   onMouseLeave={() => setPrevHover(false)}
-                  className="w-10 h-10 bg-[#fff] rounded-full flex items-center absolute top-[190px] left-[16px] transform -translate-y-1/2 lg:hidden"
+                  className="w-10 h-10 bg-[#f6f3f3] rounded-full flex items-center absolute top-[190px] left-[16px] transform -translate-y-1/2 lg:hidden shadow-circle"
                 >
                   <svg
                     width="12"
@@ -450,7 +450,7 @@ function Product() {
                   onClick={next}
                   onMouseEnter={() => setNextHover(true)}
                   onMouseLeave={() => setNextHover(false)}
-                  className="w-10 h-10 bg-[#fff] rounded-full flex items-center justify-end absolute top-[190px] right-[16px] transform -translate-y-1/2 lg:hidden"
+                  className="w-10 h-10 bg-[#f6f3f3] rounded-full flex items-center justify-end absolute top-[190px] right-[16px] transform -translate-y-1/2 lg:hidden shadow-circle"
                 >
                   <svg
                     width="13"
