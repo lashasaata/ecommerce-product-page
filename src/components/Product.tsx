@@ -129,6 +129,24 @@ function Product() {
     }
   }, [useOverlay]);
 
+  // hover for minus plus svgs
+  const [minus, setMinus] = useState(false);
+  const [plus, setPlus] = useState(false);
+
+  const enterMinus = () => {
+    setMinus(true);
+  };
+  const leaveMinus = () => {
+    setMinus(false);
+  };
+
+  const enterPlus = () => {
+    setPlus(true);
+  };
+  const leavePlus = () => {
+    setPlus(false);
+  };
+
   return (
     <main
       onClick={() => context.setCartList(false)}
@@ -473,25 +491,45 @@ function Product() {
                 </div>
                 <section className="flex flex-col lg:flex-row lg:justify-between gap-4 mt-2 lg:mt-1">
                   <div className="lg:w-[176px] flex items-center justify-between bg-[#f6f8fd] rounded-[10px] pt-[22px] px-6 lg:px-4 pb-[18px]">
-                    <img
+                    <svg
+                      width="12"
+                      height="4"
+                      xmlns="http://www.w3.org/2000/svg"
                       onClick={cutproduct}
+                      onMouseEnter={enterMinus}
+                      onMouseLeave={leaveMinus}
                       className="hover:cursor-pointer"
-                      src="/images/icon-minus.svg"
-                      alt="minus"
-                    />
+                    >
+                      <path
+                        d="M11.357 3.332A.641.641 0 0 0 12 2.69V.643A.641.641 0 0 0 11.357 0H.643A.641.641 0 0 0 0 .643v2.046c0 .357.287.643.643.643h10.714Z"
+                        id="minus"
+                        fill={minus ? "#ffab6a" : "#FF7E1B"}
+                        fillRule="nonzero"
+                      />
+                    </svg>
                     <span className="text-base text-[#1d2026] font-[700] leading-[1] mt-[-3px]">
                       {amount}
                     </span>
-                    <img
+                    <svg
+                      width="12"
+                      height="12"
+                      xmlns="http://www.w3.org/2000/svg"
                       onClick={addproduct}
+                      onMouseEnter={enterPlus}
+                      onMouseLeave={leavePlus}
                       className="hover:cursor-pointer"
-                      src="/images/icon-plus.svg"
-                      alt="plus"
-                    />
+                    >
+                      <path
+                        d="M12 7.023V4.977a.641.641 0 0 0-.643-.643h-3.69V.643A.641.641 0 0 0 7.022 0H4.977a.641.641 0 0 0-.643.643v3.69H.643A.641.641 0 0 0 0 4.978v2.046c0 .356.287.643.643.643h3.69v3.691c0 .356.288.643.644.643h2.046a.641.641 0 0 0 .643-.643v-3.69h3.691A.641.641 0 0 0 12 7.022Z"
+                        id="plus"
+                        fill={plus ? "#ffab6a" : "#FF7E1B"}
+                        fillRule="nonzero"
+                      />
+                    </svg>
                   </div>
                   <button
                     onClick={() => addHandler(e)}
-                    className="lg:w-[232px] xl:w-[272px] flex justify-center items-center gap-4 bg-[#ff7e1b] rounded-[10px] shadow-addToCart pt-[19px] pb-[18px]"
+                    className="lg:w-[232px] xl:w-[272px] flex justify-center items-center gap-4 bg-[#ff7e1b] hover:bg-[#ffab6a] rounded-[10px] shadow-addToCart pt-[19px] pb-[18px]"
                   >
                     <svg
                       className="hover:cursor-pointer"
