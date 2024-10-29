@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./carousel.css";
 import { useParams } from "react-router-dom";
-import { useContext, useState, useRef } from "react";
+import { useContext, useState } from "react";
 import { Mycontext } from "../App";
 
 function Product() {
@@ -18,15 +18,16 @@ function Product() {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-  const slider = React.useRef(null);
-  const slider1 = React.useRef(null);
+
+  const slider = React.useRef<Slider | null>(null);
+  const slider1 = React.useRef<Slider | null>(null);
 
   const next = () => {
     if (slider.current) {
       if (useOverlay) {
-        slider1.current.slickNext();
+        slider1.current?.slickNext();
       } else {
-        slider.current.slickNext();
+        slider.current?.slickNext();
       }
     }
   };
@@ -34,9 +35,9 @@ function Product() {
   const previous = () => {
     if (slider.current) {
       if (useOverlay) {
-        slider1.current.slickPrev();
+        slider1.current?.slickPrev();
       } else {
-        slider.current.slickPrev();
+        slider.current?.slickPrev();
       }
     }
   };
@@ -59,9 +60,21 @@ function Product() {
     }
   };
 
-  const addHandler = (e) => {
+  interface Item {
+    name: string;
+    images: {
+      first: string;
+      second: string;
+      third: string;
+      fourth: string;
+    };
+    price: number;
+    discount: number;
+  }
+
+  const addHandler = (e: Item) => {
     if (amount > 0) {
-      context.setUsedata((prevData) => {
+      context.setUsedata((prevData: any) => {
         const updatedUser = {
           ...prevData.user[0],
           cart: [
@@ -89,14 +102,14 @@ function Product() {
 
   const [activeThumbnail, setActiveThumbnail] = useState(0);
 
-  const handleAfterChange = (currentSlide) => {
+  const handleAfterChange = (currentSlide: number) => {
     setActiveThumbnail(currentSlide);
   };
 
   // for overlay carousel
   const [activeThumbnail1, setActiveThumbnail1] = useState(0);
 
-  const handleAfterChange1 = (currentSlide) => {
+  const handleAfterChange1 = (currentSlide: number) => {
     setActiveThumbnail1(currentSlide);
   };
 
@@ -251,7 +264,7 @@ function Product() {
                                   ? " opacity-40"
                                   : "hover:opacity-60"
                               } `}
-                              onClick={() => slider1.current.slickGoTo(0)}
+                              onClick={() => slider1.current?.slickGoTo(0)}
                             />
                           </div>
                           <div
@@ -269,7 +282,7 @@ function Product() {
                                   ? " opacity-40"
                                   : "hover:opacity-60"
                               } `}
-                              onClick={() => slider1.current.slickGoTo(1)}
+                              onClick={() => slider1.current?.slickGoTo(1)}
                             />
                           </div>
                           <div
@@ -287,7 +300,7 @@ function Product() {
                                   ? " opacity-40"
                                   : "hover:opacity-60"
                               } `}
-                              onClick={() => slider1.current.slickGoTo(2)}
+                              onClick={() => slider1.current?.slickGoTo(2)}
                             />
                           </div>
                           <div
@@ -305,7 +318,7 @@ function Product() {
                                   ? " opacity-40"
                                   : "hover:opacity-60"
                               } `}
-                              onClick={() => slider1.current.slickGoTo(3)}
+                              onClick={() => slider1.current?.slickGoTo(3)}
                             />
                           </div>
                         </div>
@@ -369,7 +382,7 @@ function Product() {
                           ? " opacity-40"
                           : "hover:opacity-60"
                       } `}
-                      onClick={() => slider.current.slickGoTo(0)}
+                      onClick={() => slider.current?.slickGoTo(0)}
                     />
                   </div>
                   <div
@@ -387,7 +400,7 @@ function Product() {
                           ? " opacity-40"
                           : "hover:opacity-60"
                       } `}
-                      onClick={() => slider.current.slickGoTo(1)}
+                      onClick={() => slider.current?.slickGoTo(1)}
                     />
                   </div>
                   <div
@@ -405,7 +418,7 @@ function Product() {
                           ? " opacity-40"
                           : "hover:opacity-60"
                       } `}
-                      onClick={() => slider.current.slickGoTo(2)}
+                      onClick={() => slider.current?.slickGoTo(2)}
                     />
                   </div>
                   <div
@@ -423,7 +436,7 @@ function Product() {
                           ? " opacity-40"
                           : "hover:opacity-60"
                       } `}
-                      onClick={() => slider.current.slickGoTo(3)}
+                      onClick={() => slider.current?.slickGoTo(3)}
                     />
                   </div>
                 </div>

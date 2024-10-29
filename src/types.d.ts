@@ -1,6 +1,7 @@
 type Tproduct = {
   id: number;
   company: string;
+  category: string;
   name: string;
   description: string;
   price: number;

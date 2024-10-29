@@ -1,12 +1,27 @@
 import "./App.css";
 import data from "../data.json";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import Navigate from "./components/Navigate";
 import Collections from "./components/Collections";
 import Product from "./components/Product";
 
-export const Mycontext = createContext(null);
+type MyContextType = {
+  useData: any;
+  setUsedata: React.Dispatch<React.SetStateAction<any>>;
+  navigate: ReturnType<typeof useNavigate>;
+  cartList: any;
+  setCartList: React.Dispatch<React.SetStateAction<any>>;
+};
+
+// Apply the type to the context
+export const Mycontext = createContext<MyContextType>({
+  useData: {},
+  setUsedata: () => {},
+  navigate: () => {},
+  cartList: [],
+  setCartList: () => {},
+});
 
 function App() {
   const [useData, setUsedata] = useState(() => {
@@ -18,7 +33,7 @@ function App() {
       return data; // Fallback to default data if parsing fails
     }
   });
-
+  // console.log(useData);
   useEffect(() => {
     localStorage.setItem("data", JSON.stringify(useData));
   }, [useData]);
@@ -30,6 +45,15 @@ function App() {
     localStorage.setItem("cartList", JSON.stringify(cartList));
   }, [cartList]);
   const navigate = useNavigate();
+
+  // type MyContextType = {
+  //   useData: any;
+  //   setUsedata: React.Dispatch<any>;
+  //   navigate: any;
+  //   cartList: any;
+  //   setCartList: React.Dispatch<any>;
+  // };
+  // const Mycontext = React.createContext<MyContextType>({} as MyContextType);
 
   return (
     <div className="lg:flex lg:flex-col lg:gap-[90px] lg:px-[75px] xl:px-[165px]">

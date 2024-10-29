@@ -1,18 +1,25 @@
-import { useContext, useState, useEffect, useRef } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Mycontext } from "../App";
 import Overlay from "./overlay/Overlay";
 
 function Navigate() {
   const context = useContext(Mycontext);
   const [isOverlay, setOverlay] = useState(false);
-  const sectionRef = useRef(null);
+  // const sectionRef = useRef(null);
 
   const handleList = () => {
     context.setCartList(!context.cartList);
   };
   //counts products amount in cart
+  type cartTy = {
+    id: number;
+    name: string;
+    image: string;
+    price: number;
+    amount: number;
+  };
   let products = 0;
-  context.useData.user[0].cart.map((e) => (products += e.amount));
+  context.useData.user[0].cart.map((e: cartTy) => (products += e.amount));
 
   useEffect(() => {
     localStorage.setItem(`products`, JSON.stringify(products));
@@ -22,7 +29,9 @@ function Navigate() {
   const handleDelete = (id: number) => {
     const updatedUser: Tdata = {
       ...context.useData.user[0],
-      cart: context.useData.user[0].cart.filter((item) => item.id !== id),
+      cart: context.useData.user[0].cart.filter(
+        (item: cartTy) => item.id !== id
+      ),
     };
     context.setUsedata(() => {
       return {
@@ -67,7 +76,7 @@ function Navigate() {
       };
     }
   });
-  const menuDr = (e) => {
+  const menuDr = (e: React.MouseEvent<HTMLHeadingElement>) => {
     const closedRoutes = {
       Collections: false,
       Men: false,
@@ -75,18 +84,22 @@ function Navigate() {
       About: false,
       Contact: false,
     };
-    const target = e.target;
+
+    // Cast e.target to HTMLHeadingElement
+    const target = e.target as HTMLHeadingElement;
+
     setActiveMenu(() => {
       return {
         ...closedRoutes,
         [target.innerText]: true,
       };
     });
-    // navigate routes
+
+    // Navigate routes
     if (target.innerText === "Collections") {
       context.navigate(`/`);
     } else {
-      context.navigate(`${target.innerText}`);
+      context.navigate(`/${target.innerText}`);
     }
   };
 
@@ -245,44 +258,46 @@ function Navigate() {
               <div className="w-full flex flex-col items-center gap-6">
                 {" "}
                 <div className="w-full max-h-[140px] overflow-auto flex flex-col gap-6">
-                  {context.useData.user[0].cart.map((e, index: number) => {
-                    return (
-                      <section
-                        key={index}
-                        className="w-full flex items-center justify-between px-6"
-                      >
-                        <div className="flex items-center gap-4">
-                          <img
-                            src={e.image}
-                            alt="product"
-                            className="w-[50px] h-[50px] rounded-[4px]"
-                          />
-                          <div>
-                            <h2 className="text-base text-[#69707d] font-[500] leading-[1.63] ">
-                              {e.name}
-                            </h2>
+                  {context.useData.user[0].cart.map(
+                    (e: cartTy, index: number) => {
+                      return (
+                        <section
+                          key={index}
+                          className="w-full flex items-center justify-between px-6"
+                        >
+                          <div className="flex items-center gap-4">
+                            <img
+                              src={e.image}
+                              alt="product"
+                              className="w-[50px] h-[50px] rounded-[4px]"
+                            />
                             <div>
-                              <span className="text-base text-[#69707d] font-[500] leading-[1.63] ">
-                                ${e.price} x {e.amount}
-                              </span>{" "}
-                              <span className="text-base text-[#1d2026] font-[500] leading-[1.63] ">
-                                $
-                                {(Number(e.price) * Number(e.amount)).toFixed(
-                                  2
-                                )}
-                              </span>
+                              <h2 className="text-base text-[#69707d] font-[500] leading-[1.63] ">
+                                {e.name}
+                              </h2>
+                              <div>
+                                <span className="text-base text-[#69707d] font-[500] leading-[1.63] ">
+                                  ${e.price} x {e.amount}
+                                </span>{" "}
+                                <span className="text-base text-[#1d2026] font-[500] leading-[1.63] ">
+                                  $
+                                  {(Number(e.price) * Number(e.amount)).toFixed(
+                                    2
+                                  )}
+                                </span>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                        <img
-                          onClick={() => handleDelete(e.id)}
-                          src="/images/icon-delete.svg"
-                          alt="delete"
-                          className="ml-1 hover:cursor-pointer"
-                        />
-                      </section>
-                    );
-                  })}
+                          <img
+                            onClick={() => handleDelete(e.id)}
+                            src="/images/icon-delete.svg"
+                            alt="delete"
+                            className="ml-1 hover:cursor-pointer"
+                          />
+                        </section>
+                      );
+                    }
+                  )}
                 </div>
                 <button
                   onClick={purchase}

@@ -9,7 +9,7 @@ function Collections({ value }: { value: string }) {
       onClick={() => context.setCartList(false)}
     >
       {value === "Collections"
-        ? context.useData.products.map((e, index: number) => {
+        ? context.useData.products.map((e: Tproduct, index: number) => {
             return (
               <div key={index} className="w-[330px] flex flex-col gap-3">
                 <img
@@ -44,8 +44,8 @@ function Collections({ value }: { value: string }) {
             );
           })
         : context.useData.products
-            .filter((e) => e.category == value)
-            .map((e, index: number) => {
+            .filter((e: Tproduct) => e.category == value)
+            .map((e: Tproduct, index: number) => {
               return (
                 <div key={index} className="w-[330px] flex flex-col gap-3">
                   <img
