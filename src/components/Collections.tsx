@@ -5,7 +5,7 @@ function Collections({ value }: { value: string }) {
 
   return (
     <div
-      className="flex justify-center md:justify-start flex-wrap gap-10 md:p-10 mb-20"
+      className="flex justify-center md:justify-around lg:justify-start flex-wrap gap-10 md:p-10 mb-20"
       onClick={() => context.setCartList(false)}
     >
       {value === "Collections"
